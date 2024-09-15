@@ -1,4 +1,4 @@
-package com.minicine.minicinema.dto;
+package com.minicine.minicinema.dto.member;
 
 import lombok.*;
 

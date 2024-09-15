@@ -1,4 +1,4 @@
-package com.minicine.minicinema.repository;
+package com.minicine.minicinema.repository.member;
 
 public class MemberRepositoryCustomImpl implements MemberRepositoryCustom {
 }

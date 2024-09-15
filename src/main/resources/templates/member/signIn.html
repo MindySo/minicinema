@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>signIn</title>
+</head>
+<body>
+<form id="loginForm">
+    <div>
+        <h3>id</h3>
+        <input type="text" id="id" name="username">
+    </div>
+
+    <div>
+        <h3>pw</h3>
+        <input type="password" id="pw" name="password">
+    </div>
+    <button type="button" onclick="submitForm()">Login</button>
+</form>
+
+<script>
+    function submitForm() {
+        const form = document.getElementById('loginForm');
+        const formData = {
+            username: form.username.value,
+            password: form.password.value
+        };
+
+        fetch('/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/loginSuccess";  // 로그인 성공 시 리다이렉트
+                } else {
+                    alert('로그인 실패');
+                }
+            });
+    }
+</script>
+</body>
+</html>

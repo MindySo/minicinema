@@ -1,4 +1,4 @@
-package com.minicine.minicinema.service;
+package com.minicine.minicinema.service.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
