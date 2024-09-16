@@ -1,4 +1,4 @@
-package com.minicine.minicinema.service.service;
+package com.minicine.minicinema.service.member;
 
 import org.springframework.stereotype.Service;
 

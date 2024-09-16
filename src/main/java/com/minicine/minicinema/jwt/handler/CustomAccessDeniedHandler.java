@@ -1,7 +1,7 @@
-package com.minicine.minicinema.handler;
+package com.minicine.minicinema.jwt.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.minicine.minicinema.dto.ErrorResponseDto;
+import com.minicine.minicinema.dto.auth.ErrorResponseDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

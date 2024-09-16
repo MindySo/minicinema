@@ -1,6 +1,6 @@
 package com.minicine.minicinema.jwt;
 
-import com.minicine.minicinema.dto.CustomUserInfoDto;
+import com.minicine.minicinema.dto.auth.CustomUserInfoDto;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;

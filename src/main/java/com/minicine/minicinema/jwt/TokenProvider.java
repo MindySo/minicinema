@@ -1,15 +1,10 @@
 package com.minicine.minicinema.jwt;
 
-import com.minicine.minicinema.dto.TokenDto;
-import com.minicine.minicinema.entity.member.MemberEntity;
+import com.minicine.minicinema.dto.auth.TokenDto;
 import com.minicine.minicinema.repository.member.MemberRepository;
-import com.minicine.minicinema.repository.member.MemberRepositoryCustom;
-import com.minicine.minicinema.service.service.MemberService;
-import com.minicine.minicinema.service.service.MemberServiceImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

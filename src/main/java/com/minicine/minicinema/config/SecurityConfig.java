@@ -1,11 +1,11 @@
 package com.minicine.minicinema.config;
 
-import com.minicine.minicinema.handler.CustomAccessDeniedHandler;
-import com.minicine.minicinema.handler.CustomAuthenticationEntryPoint;
+import com.minicine.minicinema.jwt.handler.CustomAccessDeniedHandler;
+import com.minicine.minicinema.jwt.handler.CustomAuthenticationEntryPoint;
 import com.minicine.minicinema.jwt.JwtAuthFilter;
 import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.jwt.TokenProvider;
-import com.minicine.minicinema.service.service.CustomUserDetailsService;
+import com.minicine.minicinema.service.auth.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

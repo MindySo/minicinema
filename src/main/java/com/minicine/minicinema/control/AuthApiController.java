@@ -1,10 +1,10 @@
 package com.minicine.minicinema.control;
 
-import com.minicine.minicinema.dto.MemberRequestDto;
-import com.minicine.minicinema.dto.TokenDto;
-import com.minicine.minicinema.dto.TokenRequestDto;
+import com.minicine.minicinema.dto.auth.MemberRequestDto;
+import com.minicine.minicinema.dto.auth.TokenDto;
+import com.minicine.minicinema.dto.auth.TokenRequestDto;
 import com.minicine.minicinema.entity.member.MemberEntity;
-import com.minicine.minicinema.service.service.AuthService;
+import com.minicine.minicinema.service.auth.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

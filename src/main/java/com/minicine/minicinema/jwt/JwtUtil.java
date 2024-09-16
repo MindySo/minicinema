@@ -1,8 +1,5 @@
 package com.minicine.minicinema.jwt;
 
-import com.minicine.minicinema.dto.CustomUserInfoDto;
-import com.minicine.minicinema.entity.member.MemberEntity;
-import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -10,11 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
-import java.security.Key;
-import java.sql.Date;
-import java.time.ZonedDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @Component

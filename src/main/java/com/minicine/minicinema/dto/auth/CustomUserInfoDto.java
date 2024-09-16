@@ -1,4 +1,4 @@
-package com.minicine.minicinema.dto;
+package com.minicine.minicinema.dto.auth;
 
 import com.minicine.minicinema.common.AuthorityEnum;
 import com.minicine.minicinema.dto.member.MemberDto;

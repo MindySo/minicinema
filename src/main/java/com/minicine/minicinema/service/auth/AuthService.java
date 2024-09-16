@@ -1,9 +1,8 @@
-package com.minicine.minicinema.service.service;
+package com.minicine.minicinema.service.auth;
 
-import com.minicine.minicinema.dto.MemberRequestDto;
-import com.minicine.minicinema.dto.MemberResponseDto;
-import com.minicine.minicinema.dto.TokenDto;
-import com.minicine.minicinema.dto.TokenRequestDto;
+import com.minicine.minicinema.dto.auth.MemberRequestDto;
+import com.minicine.minicinema.dto.auth.TokenDto;
+import com.minicine.minicinema.dto.auth.TokenRequestDto;
 import com.minicine.minicinema.entity.member.MemberEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.minicine.minicinema.entity;
+package com.minicine.minicinema.entity.auth;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,19 +1,18 @@
-package com.minicine.minicinema.service.service;
+package com.minicine.minicinema.service.auth;
 
-import com.minicine.minicinema.dto.*;
-import com.minicine.minicinema.entity.RefreshTokenEntity;
+import com.minicine.minicinema.dto.auth.MemberRequestDto;
+import com.minicine.minicinema.dto.auth.TokenDto;
+import com.minicine.minicinema.dto.auth.TokenRequestDto;
+import com.minicine.minicinema.entity.auth.RefreshTokenEntity;
 import com.minicine.minicinema.entity.member.MemberEntity;
-import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.jwt.TokenProvider;
-import com.minicine.minicinema.repository.RefreshTokenRepository;
+import com.minicine.minicinema.repository.auth.RefreshTokenRepository;
 import com.minicine.minicinema.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

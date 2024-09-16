@@ -1,8 +1,6 @@
-package com.minicine.minicinema.service.service;
+package com.minicine.minicinema.service.auth;
 
-import com.minicine.minicinema.dto.CustomUserInfoDto;
 import com.minicine.minicinema.entity.member.MemberEntity;
-import com.minicine.minicinema.jwt.CustomUserDetails;
 import com.minicine.minicinema.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -13,11 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Member;
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

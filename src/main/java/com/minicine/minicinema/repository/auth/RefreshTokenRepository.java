@@ -1,6 +1,6 @@
-package com.minicine.minicinema.repository;
+package com.minicine.minicinema.repository.auth;
 
-import com.minicine.minicinema.entity.RefreshTokenEntity;
+import com.minicine.minicinema.entity.auth.RefreshTokenEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
