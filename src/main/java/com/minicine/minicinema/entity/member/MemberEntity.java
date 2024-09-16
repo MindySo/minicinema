@@ -1,5 +1,6 @@
 package com.minicine.minicinema.entity.member;
 
+import com.minicine.minicinema.common.AuthorityEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +23,13 @@ public class MemberEntity {
     @Column
     private String password;
 
-    @Column
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private AuthorityEnum authority;
+
+    @Builder
+    public MemberEntity(String username, String password, AuthorityEnum authority) {
+        this.username = username;
+        this.password = password;
+        this.authority = authority;
+    }
 }

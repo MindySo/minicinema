@@ -18,8 +18,18 @@ public class MainController {
         return "/member/signIn";
     }
 
+    @GetMapping("/signupForm")
+    public String signupForm() {
+        return "/member/signupForm";
+    }
+
     @GetMapping("/loginSuccess")
     public String loginSuccess() {
+        return "/member/successPage";
+    }
+
+    @GetMapping("/signupSuccess")
+    public String signUpSuccess() {
         return "/member/successPage";
     }
 

@@ -6,6 +6,9 @@ import com.minicine.minicinema.jwt.CustomUserDetails;
 import com.minicine.minicinema.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,21 +16,35 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.Member;
+import java.util.Collections;
+import java.util.Optional;
 
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
     private final ModelMapper mapper;
 
     @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        MemberEntity memberEnity = memberRepository.findById(Long.parseLong(id))
-                .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저가 없습니다."));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        CustomUserInfoDto dto = mapper.map(memberEnity, CustomUserInfoDto.class);
+        MemberEntity memberEntity = memberRepository.findMemberByUsername(username);
 
-        return new CustomUserDetails(dto);
+        if (memberEntity != null) {
+            return createUserDetails(memberEntity);
+        } else {
+            throw new UsernameNotFoundException("해당하는 유저가 없습니다.");
+        }
+    }
+
+    // DB 에 User 값이 존재한다면 UserDetails 객체로 만들어서 리턴
+    private UserDetails createUserDetails(MemberEntity memberEntity) {
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(memberEntity.getAuthority().toString());
+
+        return new User(
+                String.valueOf(memberEntity.getId()),
+                memberEntity.getPassword(),
+                Collections.singleton(grantedAuthority)
+        );
     }
 }

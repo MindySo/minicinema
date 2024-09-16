@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signupForm</title>
+</head>
+<body>
+    <form id="signupForm">
+        <div>
+            <h3>id</h3>
+            <input type="text" id="id" name="username">
+        </div>
+
+        <div>
+            <h3>pw</h3>
+            <input type="password" id="pw" name="password">
+        </div>
+        <div>
+            <h3>role</h3>
+            <input type="radio" id="ADMIN" name="authority" value="ADMIN">
+            <label for="ADMIN">ADMIN</label></br>
+            <input type="radio" id="USER" name="authority" value="USER">
+            <label for="USER">USER</label></br>
+        </div>
+        <button type="button" onclick="submitForm()">SignUp</button>
+    </form>
+    <script>
+        function submitForm() {
+            const form = document.getElementById('signupForm');
+            const formData = {
+                username: form.username.value,
+                password: form.password.value,
+                authority: form.authority.value
+            };
+
+            fetch('/api/v1/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/signupSuccess";  // 로그인 성공 시 리다이렉트
+                    } else {
+                        alert('회원가입 실패');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

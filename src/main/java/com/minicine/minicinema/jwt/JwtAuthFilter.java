@@ -1,14 +1,13 @@
 package com.minicine.minicinema.jwt;
 
-import com.minicine.minicinema.service.service.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
@@ -16,36 +15,32 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter { // OncePerRequestFilter -> 한 번 실행 보장
 
-    private final CustomUserDetailsService customUserDetailsService;
-    private final JwtUtil jwtUtil;
-    /**
-     * JWT 토큰 검증 필터 수행
-     */
+    public static final String AUTHORIZATION_HEADER = "Authorization";
+    public static final String BEARER_PREFIX = "Bearer ";
+
+    private final TokenProvider tokenProvider;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authorizationHeader = request.getHeader("Authorization");
+        // 1. Request Header 에서 토큰을 꺼냄
+        String jwt = resolveToken(request);
 
-        //JWT가 헤더에 있는 경우
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            String token = authorizationHeader.substring(7);
-            //JWT 유효성 검증
-            if (jwtUtil.validateToken(token)) {
-                Long userId = jwtUtil.getUserId(token);
+        // 2. validateToken 으로 토큰 유효성 검사
+        if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
 
-                //유저와 토큰 일치 시 userDetails 생성
-                UserDetails userDetails = customUserDetailsService.loadUserByUsername(userId.toString());
-
-                if (userDetails != null) {
-                    //UserDetsils, Password, Role -> 접근권한 인증 Token 생성
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-
-                    //현재 Request의 Security Context에 접근권한 설정
-                    SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-                }
-            }
+            Authentication authentication = tokenProvider.getAuthentication(jwt);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         filterChain.doFilter(request, response); // 다음 필터로 넘기기
+    }
+
+    // Request Header 에서 토큰 정보를 꺼내오기
+    private String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
+            return bearerToken.substring(7);
+        }
+        return null;
     }
 }

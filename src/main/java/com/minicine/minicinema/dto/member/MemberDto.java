@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @ToString
 @NoArgsConstructor
+@Builder
 @AllArgsConstructor
 public class MemberDto {
     private Long id;
