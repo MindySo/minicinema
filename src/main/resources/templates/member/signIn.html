@@ -1,55 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <meta charset="UTF-8">
-    <title>signIn</title>
-</head>
-<body>
-    <form id="loginForm" action="api/v1/auth/login" method="post">
-        <div>
-            <h3>id</h3>
-            <input type="text" id="id" name="username">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<title layout:fragment="title">signIn</title>
+
+<th:block layout:fragment="css">
+</th:block>
+
+<th:block layout:fragment="javascript">
+    <script src="/js/member/signIn.js"></script>
+</th:block>
+
+<div class="container" layout:fragment="content">
+
+    <main class="form-signin w-25 m-auto" >
+      <form style="margin : 20% 0" id="loginForm">
+        <h1 class="h3 mb-3 fw-normal" style="text-align: center">로그인</h1>
+
+        <div class="form-floating">
+          <input type="email" class="form-control" name="username" id="floatingInput" placeholder="name@example.com">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">Password</label>
         </div>
 
-        <div>
-            <h3>pw</h3>
-            <input type="password" id="pw" name="password">
+
+        <div class="d-flex justify-content-between" style="margin-top: 5%">
+<!--          <button class="btn btn-secondary w-50" type="submit">로그인</button>-->
+          <button class="btn btn-secondary w-50" type="button" onclick="submitForm()">로그인</button>
+
+          <a class="btn btn-secondary w-50" href="signupForm">회원가입</a>
         </div>
-        <button type="button" onclick="submitForm()">Login</button>
-<!--        <input type="submit" >-->
-        <a type="button" href="signupForm">회원가입</a>
-    </form>
+      </form>
+    </main>
 
-<!--    <div th:if="${param.error}">-->
-<!--        <script>-->
-<!--            alert('로그인 실패');-->
-<!--        </script>-->
-<!--    </div>-->
-
-<script>
-    function submitForm() {
-        const form = document.getElementById('loginForm');
-        const formData = {
-            username: form.username.value,
-            password: form.password.value
-        };
-
-        fetch('/api/v1/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "/loginSuccess";  // 로그인 성공 시 리다이렉트
-                } else {
-                    alert('로그인 실패');
-                }
-            });
-    }
-</script>
-</body>
+  </div>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>header</title>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</head>
+
+<header th:fragment="header">
+    <!-- 상단 내비게이션 바-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-div px-4 px-lg-5">
+            <a class="navbar-brand" href="/">MiniCinema</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/signIn">로그인</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- 헤더 -->
+    <div class="bg-dark py-5">
+        <div class="container-div px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">한국영화 100선</h1>
+                <p class="lead fw-normal text-white-50 mb-0">영화 연구자, 평론가, 창작자 등 영화계 전문가 240인이 뽑은 한국영화 100선 </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+</html>

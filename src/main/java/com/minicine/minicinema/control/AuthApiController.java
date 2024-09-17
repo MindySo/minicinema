@@ -47,7 +47,6 @@ public class AuthApiController {
 
         response.addCookie(cookie);
 
-//        return ResponseEntity.status(HttpStatus.OK).body(tokenDto.getAccessToken());
         return ResponseEntity.ok(authService.login(memberRequestDto));
     }
 
