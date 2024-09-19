@@ -20,4 +20,6 @@ public class MovieDto {
     private String productionCompany;
     private String plot;
     private String img;
+
+    private String directorName;
 }

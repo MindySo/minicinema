@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.minicine.minicinema.mapper.movie.MovieMapper">
+<!--    <insert id="save">-->
+<!--        INSERT INTO movie(id, password)-->
+<!--        VALUES (#{movie.id}, #{movie.password});-->
+<!--    </insert>-->
+
+    <select id="selectAll" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, age, country, running_time, release_date, production_company, plot, img, director.director_name
+        FROM movie
+        JOIN movie_director ON movie.movie_id = movie_director.movie_id
+        JOIN director ON movie_director.director_id = director.director_id;
+    </select>
+
+</mapper>

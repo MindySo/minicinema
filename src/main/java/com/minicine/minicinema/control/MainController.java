@@ -1,7 +1,9 @@
 package com.minicine.minicinema.control;
 
+import com.minicine.minicinema.dto.MovieDto;
 import com.minicine.minicinema.dto.member.MemberDto;
 import com.minicine.minicinema.jwt.JwtUtil;
+import com.minicine.minicinema.service.MovieService;
 import com.minicine.minicinema.service.member.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping
 @RequiredArgsConstructor
@@ -22,10 +26,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
     private final JwtUtil jwtUtil;
     private final HttpSession session;
-    private final MemberService memberService;
+    private final MovieService movieService;
 
     @GetMapping("/")
-    public String mainPage() { return "/main/main"; }
+    public String mainPage(Model model) {
+        List<MovieDto> MovieList = movieService.selectAll();
+        model.addAttribute("MovieList", MovieList);
+
+        return "/main/main";
+    }
 
     @GetMapping("/signIn")
     public String login() {
