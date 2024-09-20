@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,23 +74,19 @@ public class MainController {
 //    @GetMapping("/loginSuccess")
 //    public String loginSuccess(HttpServletRequest request, HttpServletResponse response,
 //                               @ModelAttribute("loginInfo") MemberDto loginInfo, Model model) {
-//        // 쿠키에서 JWT 토큰을 가져옴
-//        String token = getTokenFromCookies(request.getCookies());
-//        if (token == null || jwtUtil.isExpired(token)) {
-//            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            return "redirect:/login";
-//        }
 //
-//        // JWT 토큰에서 사용자 정보 추출
-//        String username = jwtUtil.getUsername(token);
-//        String role = jwtUtil.getRole(token);
-//
-//        // 사용자 정보를 request에 저장 (필요 시 사용)
-//        request.setAttribute("username", username);
-//        request.setAttribute("role", role);
 //
 //        return "/main/main";
 //    }
+
+    @GetMapping("/loginSuccess")
+    public String loginSuccess(HttpServletRequest request, HttpServletResponse response,
+                               @AuthenticationPrincipal User user, Model model) {
+
+        log.info("user {}:" + user, user.getUsername());
+
+        return "/main/main";
+    }
 
     @GetMapping("/signupSuccess")
     public String signUpSuccess() {
