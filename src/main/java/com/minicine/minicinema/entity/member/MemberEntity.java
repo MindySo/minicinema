@@ -20,6 +20,9 @@ public class MemberEntity {
     @Column(unique = true)
     private String username; // email
 
+    @Column(unique = true)
+    private String nickname;
+
     @Column
     private String password;
 
@@ -27,9 +30,10 @@ public class MemberEntity {
     private AuthorityEnum authority;
 
     @Builder
-    public MemberEntity(String username, String password, AuthorityEnum authority) {
+    public MemberEntity(String username, String password, String nickname, AuthorityEnum authority) {
         this.username = username;
         this.password = password;
+        this.nickname = nickname;
         this.authority = authority;
     }
 }

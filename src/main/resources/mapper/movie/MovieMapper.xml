@@ -14,7 +14,8 @@
             movie.movie_id, title, age, country, running_time, release_date, production_company, plot, img, director.director_name
         FROM movie
         JOIN movie_director ON movie.movie_id = movie_director.movie_id
-        JOIN director ON movie_director.director_id = director.director_id;
+        JOIN director ON movie_director.director_id = director.director_id
+        ORDER BY movie.movie_id;
     </select>
 
 </mapper>
