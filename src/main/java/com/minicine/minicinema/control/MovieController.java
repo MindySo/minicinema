@@ -24,35 +24,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class MovieController {
-    private final MemberService memberService;
+    private final AttributeController attributeController;
     private final MovieService movieService;
     private final ActorService actorService;
     private final GenreService genreService;
-    private final JwtUtil jwtUtil;
 
-    // 로그인 정보 가져오기
     @ModelAttribute
-    public void addAttributes(HttpServletRequest request, Model model) {
-        String token = getTokenFromCookies(request.getCookies());
-        log.info("token : {}", token);
-        MemberDto memberDto = null;
-        if(token != null) {
-            String username = jwtUtil.getUsername(token);
-            log.info("username: {}", username);
-            memberDto = memberService.findByUsername(username);
-        }
-        model.addAttribute("loginInfo", memberDto);
-    }
-
-    private String getTokenFromCookies(Cookie[] cookies) {
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("jwt".equals(cookie.getName())) {
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
+    public void addAttributes(HttpServletRequest request, final Model model) {
+        attributeController.addAttributes(request, model);
     }
 
     @GetMapping("/detailMovie/{movieId}")

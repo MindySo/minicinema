@@ -3783,6 +3783,7 @@ textarea.form-control-lg {
   color: var(--bs-navbar-brand-color);
   text-decoration: none;
   white-space: nowrap;
+  font-weight: bold;
 }
 .navbar-brand:hover, .navbar-brand:focus {
   color: var(--bs-navbar-brand-hover-color);
@@ -10833,11 +10834,6 @@ textarea.form-control-lg {
   }
   .d-print-none {
     display: none !important;
-  }
-  .search-none {
-    height: 163px;
-    align-content: center;
-    padding-bottom: 20px;
   }
 
 }
