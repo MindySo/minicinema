@@ -1,11 +1,13 @@
 package com.minicine.minicinema.control;
 
 import com.minicine.minicinema.dto.ActorDto;
+import com.minicine.minicinema.dto.FavoriteDto;
 import com.minicine.minicinema.dto.GenreDto;
 import com.minicine.minicinema.dto.MovieDto;
 import com.minicine.minicinema.dto.member.MemberDto;
 import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.service.ActorService;
+import com.minicine.minicinema.service.FavoriteService;
 import com.minicine.minicinema.service.GenreService;
 import com.minicine.minicinema.service.MovieService;
 import com.minicine.minicinema.service.member.MemberService;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -28,6 +31,7 @@ public class MovieController {
     private final MovieService movieService;
     private final ActorService actorService;
     private final GenreService genreService;
+    private final FavoriteService favoriteService;
 
     @ModelAttribute
     public void addAttributes(HttpServletRequest request, final Model model) {
@@ -39,11 +43,15 @@ public class MovieController {
 
         MovieDto movie = movieService.selectOneByMovieId(movieId);
         List<ActorDto> actorList= actorService.selectAllByMovieId(movieId);
-        log.info("actorList: {}", actorList);
         List<GenreDto> genreList= genreService.selectAllByMovieId(movieId);
+
+        FavoriteDto favoriteDto = new FavoriteDto(null, movieId, loginInfo.getId());
+        boolean favoriteBool = favoriteService.ifFavorite(favoriteDto);
+
         model.addAttribute("movie", movie);
         model.addAttribute("actorList", actorList);
         model.addAttribute("genreList", genreList);
+        model.addAttribute("favoriteBool", favoriteBool);
         model.addAttribute("loginInfo", loginInfo);
         return "/detail/detailMovie";
     }
