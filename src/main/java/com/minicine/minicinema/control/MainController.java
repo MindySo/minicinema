@@ -31,11 +31,13 @@ public class MainController {
     @ModelAttribute
     public void addAttributes(HttpServletRequest request, Model model) {
         String token = getTokenFromCookies(request.getCookies());
-        String username = "";
+        log.info("token : {}", token);
+        MemberDto memberDto = null;
         if(token != null) {
-            username = jwtUtil.getUsername(token);
+            String username = jwtUtil.getUsername(token);
+            log.info("username: {}", username);
+            memberDto = memberService.findByUsername(username);
         }
-        MemberDto memberDto = memberService.findByUsername(username);
         model.addAttribute("loginInfo", memberDto);
     }
 
@@ -56,6 +58,7 @@ public class MainController {
         List<MovieDto> movieList = movieService.selectAll();
         model.addAttribute("MovieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
+        log.info("loginInfo: {}" , loginInfo);
 
         return "/main/main";
     }

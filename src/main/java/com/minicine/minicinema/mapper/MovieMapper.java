@@ -10,4 +10,9 @@ public interface MovieMapper {
 //        void save(@Param("movie") MovieDto movieDto);
         List<MovieDto> selectAll();
         MovieDto selectOneByMovieId(Long movieId);
+        List<MovieDto> selectByKeyword(String keyword);
+        List<MovieDto> selectByTitle(String keyword);
+        List<MovieDto> selectByDirector(String keyword);
+        List<MovieDto> selectByActor(String keyword);
+
 }

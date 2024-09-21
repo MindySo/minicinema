@@ -11,7 +11,7 @@
 
     <select id="selectAll" resultType="com.minicine.minicinema.dto.MovieDto">
         SELECT
-            movie.movie_id, title, age, country, running_time, release_date, production_company, plot, img, director.director_name
+            movie.movie_id, title, release_date, img, director.director_name
         FROM movie
         JOIN movie_director ON movie.movie_id = movie_director.movie_id
         JOIN director ON movie_director.director_id = director.director_id
@@ -25,6 +25,52 @@
         JOIN movie_director ON movie.movie_id = movie_director.movie_id
         JOIN director ON movie_director.director_id = director.director_id
         WHERE movie.movie_id = #{movieId}
+    </select>
+
+    <select id="selectByKeyword" parameterType="String" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT DISTINCT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+                 JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
+                 JOIN actor ON movie_actor.actor_id = actor.actor_id
+        WHERE title LIKE #{keyword}
+        OR director.director_name LIKE #{keyword}
+        OR actor.actor_name LIKE #{keyword}
+        ORDER BY movie.movie_id;
+    </select>
+
+    <select id="selectByTitle" parameterType="String" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+        WHERE title LIKE #{keyword}
+        ORDER BY movie.movie_id;
+    </select>
+
+    <select id="selectByDirector" parameterType="String" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+        WHERE director.director_name LIKE #{keyword}
+        ORDER BY movie.movie_id;
+    </select>
+
+    <select id="selectByActor" parameterType="String" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+                 JOIN movie_actor ON movie.movie_id = movie_actor.movie_id
+                 JOIN actor ON movie_actor.actor_id = actor.actor_id
+        WHERE actor.actor_name LIKE #{keyword}
+        ORDER BY movie.movie_id;
     </select>
 
 </mapper>

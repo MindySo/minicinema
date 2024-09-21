@@ -10834,4 +10834,10 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+  .search-none {
+    height: 163px;
+    align-content: center;
+    padding-bottom: 20px;
+  }
+
 }

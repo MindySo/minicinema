@@ -41,6 +41,7 @@ public class TokenProvider {
         // 권한들 가져오기
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", authentication.getName());
+        log.info("username : {}", authentication.getName());
         claims.put(AUTHORITIES_KEY, authentication.getAuthorities());
 
         ZonedDateTime now = ZonedDateTime.now();
@@ -116,7 +117,7 @@ public class TokenProvider {
         }
     }
 
-    public Long getUserId(String token) {
-        return parseClaims(token).get("memberId", Long.class);
-    }
+//    public Long getUserId(String token) {
+//        return parseClaims(token).get("memberId", Long.class);
+//    }
 }

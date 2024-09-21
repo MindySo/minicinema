@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/detail")
+@RequestMapping("/movie")
 @RequiredArgsConstructor
 @Slf4j
 public class MovieController {
@@ -35,12 +35,12 @@ public class MovieController {
     public void addAttributes(HttpServletRequest request, Model model) {
         String token = getTokenFromCookies(request.getCookies());
         log.info("token : {}", token);
-        String username = "";
+        MemberDto memberDto = null;
         if(token != null) {
-            username = jwtUtil.getUsername(token);
+            String username = jwtUtil.getUsername(token);
+            log.info("username: {}", username);
+            memberDto = memberService.findByUsername(username);
         }
-        log.info("username: {}", username);
-        MemberDto memberDto = memberService.findByUsername(username);
         model.addAttribute("loginInfo", memberDto);
     }
 
@@ -67,5 +67,27 @@ public class MovieController {
         model.addAttribute("genreList", genreList);
         model.addAttribute("loginInfo", loginInfo);
         return "/detail/detailMovie";
+    }
+
+    @GetMapping("/searchMovie")
+    public String searchMovie(@ModelAttribute("loginInfo") MemberDto loginInfo, Model model,
+                              @RequestParam String category, @RequestParam String keyword) {
+        String likeKeyword = '%' + keyword + '%';
+
+        List<MovieDto> movieList = null;
+        if(category.equals("whole")) {
+            movieList = movieService.selectByKeyword(likeKeyword);
+        }else if(category.equals("title")){
+            movieList = movieService.selectByTitle(likeKeyword);
+        }else if(category.equals("director")){
+            movieList = movieService.selectByDirector(likeKeyword);
+        }else if(category.equals("actor")){
+            movieList = movieService.selectByActor(likeKeyword);
+        };
+
+        model.addAttribute("MovieList", movieList);
+        model.addAttribute("loginInfo", loginInfo);
+        log.info("loginInfo: {}" , loginInfo);
+        return "/main/main";
     }
 }

@@ -10,4 +10,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Long>, Mem
     // 쿼리 메서드
     MemberEntity findMemberByUsername(String username);
     boolean existsByUsername(String username);
+
+    MemberEntity findMemberById(Long memberId);
 }

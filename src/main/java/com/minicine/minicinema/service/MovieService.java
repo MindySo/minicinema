@@ -24,4 +24,9 @@ public class MovieService {
     public MovieDto selectOneByMovieId(Long movieId) {
         return movieMapper.selectOneByMovieId(movieId);
     }
+    public List<MovieDto> selectByKeyword(String keyword) { return movieMapper.selectByKeyword(keyword);}
+    public List<MovieDto> selectByTitle(String keyword) { return movieMapper.selectByTitle(keyword);}
+    public List<MovieDto> selectByDirector(String keyword) { return movieMapper.selectByDirector(keyword);}
+    public List<MovieDto> selectByActor(String keyword) { return movieMapper.selectByActor(keyword);}
+
 }

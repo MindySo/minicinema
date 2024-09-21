@@ -9,7 +9,6 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
 </head>
 
 <header th:fragment="header">
@@ -31,13 +30,14 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/myMovie">찜목록</a></li>
                     </th:block>
                 </ul>
-                <form class="d-flex" role="search">
-                    <select class="form-control form-control-white text-bg-white me-2" style="width: auto">
-                        <option>제목</option>
-                        <option>감독</option>
-                        <option>배우</option>
+                <form class="d-flex" role="search" id="searchForm" action="/movie/searchMovie" method="get">
+                    <select class="form-control form-control-white text-bg-white me-2" style="width: auto" name="category">
+                        <option value="whole">통합</option>
+                        <option value="title">제목</option>
+                        <option value="director">감독</option>
+                        <option value="actor">배우</option>
                     </select>
-                    <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search">
+                    <input class="form-control me-2" type="search" placeholder="검색" aria-label="Search" name="keyword">
                     <button class="btn btn-outline-secondary" type="submit">Search</button>
                 </form>
             </div>
