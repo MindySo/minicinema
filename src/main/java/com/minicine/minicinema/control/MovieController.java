@@ -45,8 +45,12 @@ public class MovieController {
         List<ActorDto> actorList= actorService.selectAllByMovieId(movieId);
         List<GenreDto> genreList= genreService.selectAllByMovieId(movieId);
 
-        FavoriteDto favoriteDto = new FavoriteDto(null, movieId, loginInfo.getId());
-        boolean favoriteBool = favoriteService.ifFavorite(favoriteDto);
+        boolean favoriteBool = false;
+
+        if(loginInfo != null) {
+            FavoriteDto favoriteDto = new FavoriteDto(null, movieId, loginInfo.getId());
+            favoriteBool = favoriteService.ifFavorite(favoriteDto);
+        }
 
         model.addAttribute("movie", movie);
         model.addAttribute("actorList", actorList);

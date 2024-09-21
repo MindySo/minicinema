@@ -79,11 +79,17 @@ $(document).ready(function () {
 
     // 비동기식 즐겨찾기 추가
     $(document).on('click', '.bi-star', function () {
+        var loginId = document.getElementById('loginInfoId');
+        if(loginId == null){
+            alert('로그인 후 이용 가능합니다.');
+            window.location.href = "/signIn";
+        }
+
         var $this = $(this); // 현재 클릭한 요소를 $this 변수에 저장
 
         const favoriteDto = {
             movieId: document.getElementById('movieId').value,
-            id: document.getElementById('loginInfoId').value
+            id: loginId.value
         };
 
         console.log(favoriteDto);
