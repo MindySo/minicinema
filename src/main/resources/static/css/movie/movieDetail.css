@@ -13,3 +13,24 @@
     color: black; /* 마우스 호버 시 텍스트 색상 변경 */
     font-weight: bold; /* 마우스 호버 시 Bold 로 보여주기 */
 }
+
+.cart-div{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 30px 0px 30px;
+}
+
+.info-div {
+    display: flex;
+    margin-top: 15px;
+}
+
+.column-div {
+    width: 17%;
+    font-weight: bold;
+}
+
+.tuple-div {
+    width: 83%;
+}

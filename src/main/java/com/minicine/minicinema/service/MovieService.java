@@ -1,7 +1,7 @@
 package com.minicine.minicinema.service;
 
 import com.minicine.minicinema.dto.MovieDto;
-import com.minicine.minicinema.mapper.movie.MovieMapper;
+import com.minicine.minicinema.mapper.MovieMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,5 +20,8 @@ public class MovieService {
 
     public List<MovieDto> selectAll() {
         return movieMapper.selectAll();
+    }
+    public MovieDto selectOneByMovieId(Long movieId) {
+        return movieMapper.selectOneByMovieId(movieId);
     }
 }

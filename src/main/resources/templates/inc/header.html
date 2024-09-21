@@ -19,9 +19,17 @@
             <a class="navbar-brand" href="/">MiniCinema</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/login">로그인</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/sing-up">회원가입</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/myMovie">찜목록</a></li>
+
+                    <th:block th:if="${loginInfo == null}">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/signIn">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/signupForm">회원가입</a></li>
+                    </th:block>
+
+                    <th:block th:if="${loginInfo != null}">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" th:text="${loginInfo.nickname + '님'}">사용자명</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page">로그아웃</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/myMovie">찜목록</a></li>
+                    </th:block>
                 </ul>
                 <form class="d-flex" role="search">
                     <select class="form-control form-control-white text-bg-white me-2" style="width: auto">

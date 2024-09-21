@@ -22,12 +22,12 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <h5 class="fw-bolder" th:text="*{title}">영화제목</h5>
-<!--                                <span th:text="*{directorName}">감독, 개봉년도</span>-->
+                                <!--                                <span th:text="*{directorName}">감독, 개봉년도</span>-->
                                 <span th:text="*{directorName + ', ' + (releaseDate != null ? releaseDate.getYear() : 'Unknown')}">감독, 개봉년도</span>
                             </div>
                         </div>
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/detail/detailMovie">자세히 보기</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{|/detail/detailMovie/*{movieId}|}">자세히 보기</a></div>
                         </div>
                     </div>
                 </div>

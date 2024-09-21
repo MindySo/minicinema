@@ -7,12 +7,8 @@ import com.minicine.minicinema.service.MovieService;
 import com.minicine.minicinema.service.member.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,14 +22,40 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
-    private final JwtUtil jwtUtil;
-    private final HttpSession session;
+
     private final MovieService movieService;
+    private final MemberService memberService;
+    private final JwtUtil jwtUtil;
+
+    // 로그인 정보 가져오기
+    @ModelAttribute
+    public void addAttributes(HttpServletRequest request, Model model) {
+        String token = getTokenFromCookies(request.getCookies());
+        String username = "";
+        if(token != null) {
+            username = jwtUtil.getUsername(token);
+        }
+        MemberDto memberDto = memberService.findByUsername(username);
+        model.addAttribute("loginInfo", memberDto);
+    }
+
+    private String getTokenFromCookies(Cookie[] cookies) {
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("jwt".equals(cookie.getName())) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
 
     @GetMapping("/")
-    public String mainPage(Model model) {
-        List<MovieDto> MovieList = movieService.selectAll();
-        model.addAttribute("MovieList", MovieList);
+    public String mainPage(@ModelAttribute("loginInfo") MemberDto loginInfo, Model model) {
+        List<MovieDto> movieList = movieService.selectAll();
+        model.addAttribute("MovieList", movieList);
+        model.addAttribute("loginInfo", loginInfo);
 
         return "/main/main";
     }
@@ -46,46 +68,6 @@ public class MainController {
     @GetMapping("/signupForm")
     public String signupForm() {
         return "/member/signupForm";
-    }
-
-
-//    // 로그인 정보 가져오기
-//    @ModelAttribute
-//    public void addAttributes(HttpServletRequest request, Model model) {
-//        String token = getTokenFromCookies(request.getCookies());
-//        String username = jwtUtil.getUsername(token);
-//        log.info("loginUser: {}", username);
-//        MemberDto memberDto = memberService.findByUsername(username);
-//
-//        model.addAttribute("loginInfo", memberDto);
-//    }
-//
-//    private String getTokenFromCookies(Cookie[] cookies) {
-//        if (cookies != null) {
-//            for (Cookie cookie : cookies) {
-//                if ("jwt".equals(cookie.getName())) {
-//                    return cookie.getValue();
-//                }
-//            }
-//        }
-//        return null;
-//    }
-//
-//    @GetMapping("/loginSuccess")
-//    public String loginSuccess(HttpServletRequest request, HttpServletResponse response,
-//                               @ModelAttribute("loginInfo") MemberDto loginInfo, Model model) {
-//
-//
-//        return "/main/main";
-//    }
-
-    @GetMapping("/loginSuccess")
-    public String loginSuccess(HttpServletRequest request, HttpServletResponse response,
-                               @AuthenticationPrincipal User user, Model model) {
-
-        log.info("user {}:" + user, user.getUsername());
-
-        return "/main/main";
     }
 
     @GetMapping("/signupSuccess")

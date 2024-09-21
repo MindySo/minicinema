@@ -14,9 +14,9 @@ function submitForm() {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = "/loginSuccess";  // 로그인 성공 시 리다이렉트
+                window.location.href = "/";  // 로그인 성공 시 리다이렉트
             } else {
-                alert('로그인 실패');
+                alert('일치하는 유저 정보가 없습니다.');
             }
         });
 }
