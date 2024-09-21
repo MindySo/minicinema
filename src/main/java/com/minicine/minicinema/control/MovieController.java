@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/movie")
@@ -46,16 +47,21 @@ public class MovieController {
         List<GenreDto> genreList= genreService.selectAllByMovieId(movieId);
 
         boolean favoriteBool = false;
-
         if(loginInfo != null) {
             FavoriteDto favoriteDto = new FavoriteDto(null, movieId, loginInfo.getId());
             favoriteBool = favoriteService.ifFavorite(favoriteDto);
         }
 
+        List<MovieDto> recommendList = movieService.selectByGenre(genreList);
+        recommendList = recommendList.stream()
+                .filter(m -> !m.getMovieId().equals(movie.getMovieId()))
+                .collect(Collectors.toList());
+
         model.addAttribute("movie", movie);
         model.addAttribute("actorList", actorList);
         model.addAttribute("genreList", genreList);
         model.addAttribute("favoriteBool", favoriteBool);
+        model.addAttribute("recommendList", recommendList);
         model.addAttribute("loginInfo", loginInfo);
         return "/detail/detailMovie";
     }

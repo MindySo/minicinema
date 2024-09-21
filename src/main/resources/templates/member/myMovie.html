@@ -30,7 +30,6 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder" th:text="*{title}">영화제목</h5>
-                                    <!--                                <span th:text="*{directorName}">감독, 개봉년도</span>-->
                                     <span th:text="*{directorName + ', ' + (releaseDate != null ? releaseDate.getYear() : 'Unknown')}">감독, 개봉년도</span>
                                 </div>
                             </div>

@@ -79,4 +79,16 @@
         WHERE favorite.id = #{id}
         ORDER BY movie.movie_id;
     </select>
+
+    <select id="selectByGenre" parameterType="String" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+                 JOIN movie_genre ON movie.movie_id = movie_genre.movie_id
+                 JOIN genre ON movie_genre.genre_id = genre.genre_id
+        WHERE genre_name LIKE #{genreName}
+        ORDER BY movie.movie_id;
+    </select>
 </mapper>

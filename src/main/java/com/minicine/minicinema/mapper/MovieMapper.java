@@ -1,5 +1,6 @@
 package com.minicine.minicinema.mapper;
 
+import com.minicine.minicinema.dto.GenreDto;
 import com.minicine.minicinema.dto.MovieDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,4 +16,5 @@ public interface MovieMapper {
         List<MovieDto> selectByDirector(String keyword);
         List<MovieDto> selectByActor(String keyword);
         List<MovieDto> selectById(Long id);
+        List<MovieDto> selectByGenre(String genre);
 }
