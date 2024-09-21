@@ -28,7 +28,7 @@
                         <input type="hidden" id="loginInfoId" th:value="${loginInfo.id}">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" th:text="${loginInfo.nickname + '님'}">사용자명</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page">로그아웃</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/myMovie">찜목록</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/movie/myMovie">찜목록</a></li>
                     </th:block>
                 </ul>
                 <form class="d-flex" role="search" id="searchForm" action="/movie/searchMovie" method="get">

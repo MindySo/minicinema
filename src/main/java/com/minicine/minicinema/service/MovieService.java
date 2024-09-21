@@ -28,5 +28,5 @@ public class MovieService {
     public List<MovieDto> selectByTitle(String keyword) { return movieMapper.selectByTitle(keyword);}
     public List<MovieDto> selectByDirector(String keyword) { return movieMapper.selectByDirector(keyword);}
     public List<MovieDto> selectByActor(String keyword) { return movieMapper.selectByActor(keyword);}
-
+    public List<MovieDto> selectById(Long id) { return movieMapper.selectById(id); }
 }

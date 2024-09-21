@@ -77,4 +77,14 @@ public class MovieController {
         log.info("loginInfo: {}" , loginInfo);
         return "/main/main";
     }
+
+    @GetMapping("/myMovie")
+    public String myMovie(@ModelAttribute("loginInfo") MemberDto loginInfo, Model model) {
+        List<MovieDto> movieList = movieService.selectById(loginInfo.getId());
+        model.addAttribute("MovieList", movieList);
+        model.addAttribute("loginInfo", loginInfo);
+        log.info("loginInfo: {}" , loginInfo);
+
+        return "/member/myMovie";
+    }
 }

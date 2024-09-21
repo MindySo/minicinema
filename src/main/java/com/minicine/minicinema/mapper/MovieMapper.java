@@ -14,5 +14,5 @@ public interface MovieMapper {
         List<MovieDto> selectByTitle(String keyword);
         List<MovieDto> selectByDirector(String keyword);
         List<MovieDto> selectByActor(String keyword);
-
+        List<MovieDto> selectById(Long id);
 }
