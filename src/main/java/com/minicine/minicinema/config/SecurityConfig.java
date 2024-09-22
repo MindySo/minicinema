@@ -6,6 +6,7 @@ import com.minicine.minicinema.jwt.JwtAuthFilter;
 import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.jwt.TokenProvider;
 import com.minicine.minicinema.service.auth.CustomUserDetailsService;
+import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -65,6 +66,20 @@ public class SecurityConfig  {
 //                        .requestMatchers("/login").permitAll()
 //                        .anyRequest().authenticated()
         );
+
+//        http.logout(logout -> logout
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/")
+//                // 로그아웃 핸들러 추가 (세션 무효화 처리)
+//                .addLogoutHandler((request, response, authentication) -> {
+//                    HttpSession session = request.getSession();
+//                    session.invalidate();
+//                })
+//                // 로그아웃 성공 핸들러 추가 (리다이렉션 처리)
+//                .logoutSuccessHandler((request, response, authentication) ->
+//                        response.sendRedirect("/"))
+//                .deleteCookies("JSESSIONID", "access_token"));
+
 
         return http.build();
     }

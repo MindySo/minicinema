@@ -55,6 +55,7 @@ public class MovieController {
         List<MovieDto> recommendList = movieService.selectByGenre(genreList);
         recommendList = recommendList.stream()
                 .filter(m -> !m.getMovieId().equals(movie.getMovieId()))
+                .limit(30)
                 .collect(Collectors.toList());
 
         model.addAttribute("movie", movie);
