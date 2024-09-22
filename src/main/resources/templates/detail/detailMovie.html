@@ -120,21 +120,32 @@
   </section>
 
   <section class="py-5 px-lg-4">
-    <!-- 댓글 다는 부분-->
     <div style="width: 80%; margin:0 auto">
-      <span>댓글</span>
-      <textarea class="form-control" cols="10" rows="5" style="resize: none;" id="commentInput"></textarea>
-      <div style="margin: 10px 0 10px 0; display: flex; justify-content: space-between;">
-        <input type="button" class="btn custom-btn addComment" id="addComment" value="댓글등록">
+      <h2 class="fw-bolder mb-4">댓글</h2>
+
+      <!-- 댓글 다는 부분-->
+      <th:block th:if="${loginInfo != null}">
+          <textarea class="form-control" cols="10" rows="3" style="resize: none;" id="commentInput" placeholder="댓글을 입력해주세요."></textarea>
+          <div style="margin: 10px 0 10px 0; display: flex; justify-content: right;">
+            <input type="button" class="btn custom-btn addComment" id="addComment" value="댓글등록">
+          </div>
+      </th:block>
+
+      <th:block th:if="${loginInfo == null}">
+        <textarea class="form-control" cols="10" rows="2" style="resize: none;" placeholder="로그인 후 입력가능합니다." disabled></textarea>
+        <div style="margin: 10px 0 10px 0; display: flex; justify-content: right;">
+          <input type="button" class="btn custom-btn addComment" value="댓글등록" disabled>
+        </div>
+      </th:block>
+
       </div>
-    </div>
 
     <!--댓글 목록-->
-    <div style="width: 80%; margin:0 auto" th:each="comment : ${commentList}" th:object="${comment}" th:id="*{id}">
+    <div style="width: 80%; margin:0 auto" class="singleComment" th:each="comment : ${commentList}" th:object="${comment}" th:id="*{id}">
       <hr>
       <div>
         <strong th:text="*{memberId}">이 름</strong>
-        <span style="color: #848484; margin-left:10px" th:text="*{regDate}">(댓글단시간)</span>
+        <span class="commentDate" th:text="*{regDate}">(댓글단시간)</span>
       </div>
       <div class="comment-content" th:text="*{content}">댓글내용</div>
       <!--댓글 수정 버튼 눌렀을 때-->
@@ -146,10 +157,12 @@
         </div>
       </div>
       <div style="text-align: right">
-        <!--<th:block th:if="만약 내가 작성한 글이라면 나오게끔 수정">-->
-        <input type="button" class="btn custom-btn comment-edit" value="수정">
-        <input type="button" class="btn custom-btn comment-delete" value="삭제">
-        <!--</th:block>-->
+        <th:block th:if="${ loginInfo != null}">
+          <th:block th:if="${loginInfo.id == comment.memberId}">
+            <input type="button" class="btn custom-btn comment-edit" value="수정">
+            <input type="button" class="btn custom-btn comment-delete" value="삭제">
+          </th:block>
+        </th:block>
       </div>
     </div>
   </section>

@@ -35,6 +35,12 @@
     width: 83%;
 }
 
+.commentDate{
+    color: #848484;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
 .movie-slide{
     --bs-gutter-x: 0;
     display: flex;

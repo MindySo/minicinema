@@ -17,6 +17,7 @@ public class CommentEntity {
     private String id;
     private Long memberId;
     private Long movieId;
+    private String nickname;
     private String content;
     private LocalDateTime regDate;
 

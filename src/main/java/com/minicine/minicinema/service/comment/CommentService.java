@@ -9,5 +9,6 @@ import java.util.List;
 public interface CommentService {
 
     void insertComment(CommentDto commentDto);
+    void deleteComment(String commentId);
     List<CommentDto> selectAllByMovieId(Long movieId);
 }

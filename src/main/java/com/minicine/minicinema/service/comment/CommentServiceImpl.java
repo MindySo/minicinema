@@ -22,10 +22,16 @@ public class CommentServiceImpl implements CommentService {
                 commentDto.getId(),
                 commentDto.getMemberId(),
                 commentDto.getMovieId(),
+                commentDto.getNickname(),
                 commentDto.getContent(),
                 commentDto.getRegDate()
         );
         commentRepository.save(commentEntity);
+    }
+
+    @Override
+    public void deleteComment(String commentId) {
+        commentRepository.deleteById(commentId);
     }
 
     @Override
