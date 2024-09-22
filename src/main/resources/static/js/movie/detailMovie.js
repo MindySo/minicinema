@@ -173,4 +173,39 @@ $(document).ready(function () {
         }
         e.preventDefault();
     });
+
+    // 댓글 추가
+    $(document).on('click', '.addComment', function () {
+        var loginId = document.getElementById('loginInfoId').value;
+        var movieId = document.getElementById('movieId').value;
+        var commentInput = document.getElementById('commentInput').value;
+        if(commentInput.trim() === ''){
+            alert('내용을 입력해주세요.');
+        }
+
+        const comment = {
+            memberId: loginId,
+            movieId: movieId,
+            content: commentInput
+        };
+
+        console.log(comment);
+
+        fetch('/api/v1/comment/addComment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/movie/detailMovie/" + movieId;
+                } else {
+                    alert('잠시 후 다시 시도해주세요.');
+                }
+            });
+    });
+
 });

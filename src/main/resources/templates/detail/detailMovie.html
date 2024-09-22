@@ -41,7 +41,7 @@
 
             <th:block th:if="${favoriteBool == true}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" style="margin: 0px 10px">
-              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
               </svg>
             </th:block>
 
@@ -81,7 +81,7 @@
 
   <!-- 추천영화 section-->
   <section class="bg-light">
-  <hr>
+    <hr>
     <div class="container-div px-4 px-lg-5 mt-5 py-5">
       <h2 class="fw-bolder mb-4">비슷한 영화</h2>
       <div class="movie-slide row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="--bs-gutter-x: 0;">
@@ -123,20 +123,20 @@
     <!-- 댓글 다는 부분-->
     <div style="width: 80%; margin:0 auto">
       <span>댓글</span>
-      <textarea class="form-control" cols="10" rows="5" style="resize: none;"></textarea>
+      <textarea class="form-control" cols="10" rows="5" style="resize: none;" id="commentInput"></textarea>
       <div style="margin: 10px 0 10px 0; display: flex; justify-content: space-between;">
-        <input type="button" class="btn custom-btn" value="댓글등록">
+        <input type="button" class="btn custom-btn addComment" id="addComment" value="댓글등록">
       </div>
     </div>
 
     <!--댓글 목록-->
-    <div style="width: 80%; margin:0 auto">
+    <div style="width: 80%; margin:0 auto" th:each="comment : ${commentList}" th:object="${comment}" th:id="*{id}">
       <hr>
       <div>
-        <strong>이 름</strong>
-        <span style="color: #848484; margin-left:10px">(댓글단시간)</span>
+        <strong th:text="*{memberId}">이 름</strong>
+        <span style="color: #848484; margin-left:10px" th:text="*{regDate}">(댓글단시간)</span>
       </div>
-      <div class="comment-content">댓글내용</div>
+      <div class="comment-content" th:text="*{content}">댓글내용</div>
       <!--댓글 수정 버튼 눌렀을 때-->
       <div class="edit-form" style="display: none;">
         <textarea class="form-control" cols="10" rows="5" style="resize: none;">댓글내용원본</textarea>

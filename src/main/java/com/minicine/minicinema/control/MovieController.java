@@ -1,15 +1,13 @@
 package com.minicine.minicinema.control;
 
-import com.minicine.minicinema.dto.ActorDto;
-import com.minicine.minicinema.dto.FavoriteDto;
-import com.minicine.minicinema.dto.GenreDto;
-import com.minicine.minicinema.dto.MovieDto;
+import com.minicine.minicinema.dto.*;
 import com.minicine.minicinema.dto.member.MemberDto;
 import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.service.ActorService;
 import com.minicine.minicinema.service.FavoriteService;
 import com.minicine.minicinema.service.GenreService;
 import com.minicine.minicinema.service.MovieService;
+import com.minicine.minicinema.service.comment.CommentService;
 import com.minicine.minicinema.service.member.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,6 +31,7 @@ public class MovieController {
     private final ActorService actorService;
     private final GenreService genreService;
     private final FavoriteService favoriteService;
+    private final CommentService commentService;
 
     @ModelAttribute
     public void addAttributes(HttpServletRequest request, final Model model) {
@@ -58,12 +57,15 @@ public class MovieController {
                 .limit(30)
                 .collect(Collectors.toList());
 
+        List<CommentDto> commentList = commentService.selectAllByMovieId(movieId);
+
         model.addAttribute("movie", movie);
         model.addAttribute("actorList", actorList);
         model.addAttribute("genreList", genreList);
         model.addAttribute("favoriteBool", favoriteBool);
         model.addAttribute("recommendList", recommendList);
         model.addAttribute("loginInfo", loginInfo);
+        model.addAttribute("commentList", commentList);
         return "/detail/detailMovie";
     }
 

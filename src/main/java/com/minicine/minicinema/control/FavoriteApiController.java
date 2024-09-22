@@ -34,7 +34,7 @@ public class FavoriteApiController {
             @Valid @RequestBody FavoriteDto favoriteDto, HttpServletResponse response) throws IOException {
         try {
             favoriteService.insertFavorite(favoriteDto);
-            return new ResponseEntity<>("updated", HttpStatus.OK);
+            return new ResponseEntity<>("inserted", HttpStatus.OK);
         }catch (Exception e) {
             log.error(e.toString());
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
