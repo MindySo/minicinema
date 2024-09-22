@@ -34,3 +34,35 @@
 .tuple-div {
     width: 83%;
 }
+
+.movie-slide{
+    --bs-gutter-x: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.arrow {
+    display: inline-block;
+    width: 65px;
+    height: 65px;
+    border-left: 12px solid lightgrey;
+    border-bottom: 12px solid lightgrey;
+    border-radius: 3px;
+    position: relative;
+    z-index: 2;
+    opacity: 50%;
+}
+
+.arrow-left{
+    transform: rotate(45deg);
+    right: 28px;
+}
+
+.arrow-right{
+    transform: rotate(-135deg);
+    left: 28px;
+}
+.owl-dots{
+    display: none;
+}

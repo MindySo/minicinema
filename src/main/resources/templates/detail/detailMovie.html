@@ -7,10 +7,14 @@
 
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/css/movie/movieDetail.css}" />
+  <link rel="stylesheet" href="/css/owl.carousel.min.css" />
 </th:block>
 
 <th:block layout:fragment="javascript">
   <script src="/js/movie/detailMovie.js"></script>
+<!--  <script src="/vendor/jquery/dist/jquery.js"></script>-->
+  <script src="/vendor/owl.carousel.min.js"></script>
+  <script src="/vendor/jquery.mousewheel.js"></script>
 </th:block>
 
 <div class="container" layout:fragment="content">
@@ -77,38 +81,46 @@
   </section>
 
   <!-- 추천영화 section-->
-  <section class="py-5 bg-light">
-    <hr>
-    <div class="container-div px-4 px-lg-5 mt-5">
+  <section class="bg-light">
+  <hr>
+    <div class="container-div px-4 px-lg-5 mt-5 py-5">
       <h2 class="fw-bolder mb-4">비슷한 영화</h2>
-      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      <div class="movie-slide row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" style="--bs-gutter-x: 0;">
 
         <th:block th:if="${recommendList.size() == 0}">
           <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">추천 영화가 없습니다.</h4>
         </th:block>
 
         <th:block th:if="${recommendList.size() != 0}">
+          <div class="arrow arrow-left"></div>
 
-          <div class="col mb-5" th:each="movie : ${recommendList}" th:object="${movie}" th:id="${movie.movieId}">
-            <div class="card h-100">
-              <img class="card-img-top" th:src="*{img}" alt="..." />
-              <div class="card-body p-4">
-                <div class="text-center">
-                  <h5 class="fw-bolder" th:text="*{title}">영화제목</h5>
-                  <span th:text="*{directorName + ', ' + (releaseDate != null ? releaseDate.getYear() : 'Unknown')}">감독, 개봉년도</span>
+          <div class="owl-carousel owl-theme">
+            <div class="col mb-5" th:each="movie : ${recommendList}" th:object="${movie}" th:id="${movie.movieId}">
+              <div class="card h-100">
+                <img class="card-img-top" th:src="*{img}" alt="..." />
+                <div class="card-body p-4">
+                  <div class="text-center">
+                    <h5 class="fw-bolder" th:text="*{title}">영화제목</h5>
+                    <span th:text="*{directorName + ', ' + (releaseDate != null ? releaseDate.getYear() : 'Unknown')}">감독, 개봉년도</span>
+                  </div>
                 </div>
-              </div>
-              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{|/movie/detailMovie/*{movieId}|}">자세히 보기</a></div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{|/movie/detailMovie/*{movieId}|}">자세히 보기</a></div>
+                </div>
               </div>
             </div>
           </div>
 
+          <div class="arrow arrow-right"></div>
         </th:block>
+
 
       </div>
     </div>
     <hr>
+  </section>
+
+  <section class="py-5 px-lg-4">
     <!-- 댓글 다는 부분-->
     <div style="width: 80%; margin:0 auto">
       <span>댓글</span>
