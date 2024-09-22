@@ -35,6 +35,21 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public void updateComment(CommentDto comment) {
+        CommentEntity commentEntity = commentRepository.findById(comment.getId()).orElse(null);
+        assert commentEntity != null;
+        CommentEntity newCommentEntity = new CommentEntity(
+                commentEntity.getId(),
+                commentEntity.getMemberId(),
+                commentEntity.getMovieId(),
+                commentEntity.getNickname(),
+                comment.getContent(),
+                commentEntity.getRegDate()
+        );
+        commentRepository.save(newCommentEntity);
+    }
+
+    @Override
     public List<CommentDto> selectAllByMovieId(Long movieId) {
         return commentRepository.findAllByMovieId(movieId);
     }

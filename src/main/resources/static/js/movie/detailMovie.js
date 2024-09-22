@@ -1,28 +1,63 @@
 $(document).ready(function () {
-    // 글수정 버튼 클릭
-    $('#comment-edit').on('click', function () {
-        $("#comment-form").hide();
-        $("#edit-form").show();
-    });
-    // 글수정 취소 버튼 클릭
-    $('#edit-cancel').on('click', function () {
-        $("#comment-form").show();
-        $("#edit-form").hide();
-    });
-    // 수정 폼의 취소 버튼 클릭 시
-    $(document).on('click', '.edit-cancel', function () {
-        $(this).closest('.edit-form').hide();  // 수정 폼 숨기기
-    });
-    // 댓글과 대댓글에서 수정 버튼 클릭 시
-    $(document).on('click', '.comment-edit', function () {
-        // 현재 클릭된 버튼의 가장 가까운 부모 div를 찾는다
-        var parentDiv = $(this).closest('div').parent().closest('div');
-        // .edit-form을 토글하고, .relay-form을 숨긴다
-        parentDiv.find('.edit-form').toggle();
-        parentDiv.find('.relay-form').hide();
+
+    // 댓글 추가
+    $(document).on('click', '.addComment', function () {
+        var loginId = document.getElementById('loginInfoId').value;
+        var nickname = document.getElementById('loginInfoNickname').value;
+        var movieId = document.getElementById('movieId').value;
+        var commentInput = document.getElementById('commentInput').value;
+        if (commentInput.trim() === '') {
+            alert('내용을 입력해주세요.');
+        }
+
+        const comment = {
+            memberId: loginId,
+            movieId: movieId,
+            nickname: nickname,
+            content: commentInput
+        };
+
+        console.log(comment);
+
+        fetch('/api/v1/comment/addComment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/movie/detailMovie/" + movieId;
+                } else {
+                    alert('잠시 후 다시 시도해주세요.');
+                }
+            });
     });
 
-    // 댓글 수정 (MiniCinema에 알맞게 수정해야 함)
+    // 댓글과 대댓글에서 수정 버튼 클릭 시
+    $(document).on('click', '.comment-edit', function () {
+        // 이미 열려있는 수정버튼을 먼저 닫음
+        $(".edit-form").hide();
+        $(".commentWithButton").show();
+
+        // 현재 클릭된 버튼의 가장 가까운 부모 div를 찾는다
+        var parentDiv = $(this).closest('.singleComment');
+        // .edit-form을 토글하고, .relay-form을 숨긴다
+        parentDiv.find('.edit-form').show();
+        parentDiv.find('.commentWithButton').hide();
+    });
+
+    // 수정 폼 - 취소 버튼 클릭 시
+    $(document).on('click', '.edit-cancel', function () {
+        // 현재 클릭된 버튼의 가장 가까운 부모 div를 찾는다
+        var parentDiv = $(this).closest('.singleComment');
+        // .edit-form을 토글하고, .relay-form을 숨긴다
+        parentDiv.find('.edit-form').hide();
+        parentDiv.find('.commentWithButton').show();
+    });
+
+    // 수정 폼 - 댓글 수정 (MiniCinema에 알맞게 수정해야 함)
     $(".edit-apply").on('click', function () {
         // 현재 클릭된 버튼이 속한 .edit-form을 찾습니다.
         let editForm = $(this).closest('.edit-form');
@@ -31,14 +66,14 @@ $(document).ready(function () {
         let content = editForm.find('textarea').val();
 
         // .edit-form의 부모 div로 올라가서 data-comment-id를 찾습니다.
-        let commentId = $(this).closest('[data-comment-id]').attr('data-comment-id');
+        let commentId = $(this).closest('.singleComment').attr('id');
 
         const commentDTO = {
-            content: content,
-            commentId: commentId
+            id: commentId,
+            content: content
         };
 
-        fetch(`/comment/${commentDTO.commentId}`, { // RestController에 알맞는 URL로 수정
+        fetch('/api/v1/comment/updateComment', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -46,7 +81,7 @@ $(document).ready(function () {
             body: JSON.stringify(commentDTO)
         })
             .then(response => {
-                if (response.status === 204) {
+                if (response.ok) {
                     window.location.reload();
                 } else {
                     alert('댓글 수정에 실패했습니다.');
@@ -182,40 +217,6 @@ $(document).ready(function () {
         e.preventDefault();
     });
 
-    // 댓글 추가
-    $(document).on('click', '.addComment', function () {
-        var loginId = document.getElementById('loginInfoId').value;
-        var movieId = document.getElementById('movieId').value;
-        var commentInput = document.getElementById('commentInput').value;
-        if (commentInput.trim() === '') {
-            alert('내용을 입력해주세요.');
-        }
-
-        const comment = {
-            memberId: loginId,
-            movieId: movieId,
-            content: commentInput
-        };
-
-        console.log(comment);
-
-        fetch('/api/v1/comment/addComment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(comment)
-        })
-
-            .then(response => {
-                if (response.ok) {
-                    window.location.href = "/movie/detailMovie/" + movieId;
-                } else {
-                    alert('잠시 후 다시 시도해주세요.');
-                }
-            });
-    });
-
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -229,7 +230,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var date = new Date(dateStr);
 
         // 원하는 형식으로 변환
-        var formattedDate = date.getFullYear() + '-' +
+        var formattedDate =
+            date.getFullYear() + '-' +
             ('0' + (date.getMonth() + 1)).slice(-2) + '-' +
             ('0' + date.getDate()).slice(-2) + ' ' +
             ('0' + date.getHours()).slice(-2) + ':' +

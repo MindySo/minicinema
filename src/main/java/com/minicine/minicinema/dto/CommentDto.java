@@ -17,14 +17,4 @@ public class CommentDto {
     private String nickname;
     private String content;
     private LocalDateTime regDate;
-
-    public CommentDto(Long movieId, String content) {
-        this.movieId = movieId;
-        this.content = content;
-    }
-
-    public CommentDto(String id) {
-        this.id = id;
-    }
-
 }

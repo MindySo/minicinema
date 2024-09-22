@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,10 +85,12 @@ public class MovieController {
         }else if(category.equals("actor")){
             movieList = movieService.selectByActor(likeKeyword);
         };
-
+        model.addAttribute("category", category);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("MovieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
-        log.info("loginInfo: {}" , loginInfo);
+        model.addAttribute("showSearch", "yes");
+
         return "/main/main";
     }
 

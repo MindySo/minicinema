@@ -34,11 +34,23 @@ public class CommentApiController {
         }
     }
 
+    @PutMapping("/updateComment")
+    public ResponseEntity<String> updateComment(
+            @Valid @RequestBody CommentDto comment, HttpServletResponse response) throws IOException {
+        try {
+            System.out.println(comment);
+            commentService.updateComment(comment);
+            return new ResponseEntity<>("updated", HttpStatus.OK);
+        } catch (Exception e) {
+            log.error(e.toString());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @DeleteMapping("/removeComment")
     public ResponseEntity<String> removeComment(
             @Valid @RequestBody CommentDto comment, HttpServletResponse response) throws IOException {
         try {
-            System.out.println(comment);
             commentService.deleteComment(comment.getId());
             return new ResponseEntity<>("deleted", HttpStatus.OK);
         } catch (Exception e) {

@@ -10,5 +10,7 @@ public interface CommentService {
 
     void insertComment(CommentDto commentDto);
     void deleteComment(String commentId);
+    void updateComment(CommentDto comment);
     List<CommentDto> selectAllByMovieId(Long movieId);
+
 }

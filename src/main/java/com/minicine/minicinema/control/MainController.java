@@ -35,7 +35,7 @@ public class MainController {
         List<MovieDto> movieList = movieService.selectAll();
         model.addAttribute("MovieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
-        log.info("loginInfo: {}" , loginInfo);
+        model.addAttribute("showSearch", "yes");
 
         return "/main/main";
     }

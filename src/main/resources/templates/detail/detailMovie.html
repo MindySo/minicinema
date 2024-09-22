@@ -121,12 +121,15 @@
 
   <section class="py-5 px-lg-4">
     <div style="width: 80%; margin:0 auto">
-      <h2 class="fw-bolder mb-4">댓글</h2>
+      <div class="commentCnt">
+        <h2 class="fw-bolder mb-4">댓글</h2>
+        <h3 class="fw-bolder mb-4" style="color: #bcbcbc" th:text="${commentList.size() + '개'}">n개</h3>
+      </div>
 
       <!-- 댓글 다는 부분-->
       <th:block th:if="${loginInfo != null}">
           <textarea class="form-control" cols="10" rows="3" style="resize: none;" id="commentInput" placeholder="댓글을 입력해주세요."></textarea>
-          <div style="margin: 10px 0 10px 0; display: flex; justify-content: right;">
+          <div style="margin: 10px 0; display: flex; justify-content: right;">
             <input type="button" class="btn custom-btn addComment" id="addComment" value="댓글등록">
           </div>
       </th:block>
@@ -144,26 +147,38 @@
     <div style="width: 80%; margin:0 auto" class="singleComment" th:each="comment : ${commentList}" th:object="${comment}" th:id="*{id}">
       <hr>
       <div>
-        <strong th:text="*{memberId}">이 름</strong>
+        <strong th:text="*{nickname}">이 름</strong>
+<!--        <span class="myComment">&nbsp;| &nbsp;</span>-->
         <span class="commentDate" th:text="*{regDate}">(댓글단시간)</span>
+
+        <th:block th:if="${loginInfo.id == comment.memberId}">
+          <span class="myComment">&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;내 댓글</span>
+        </th:block>
+
       </div>
-      <div class="comment-content" th:text="*{content}">댓글내용</div>
+      <div class="commentWithButton">
+        <div class="comment-content" th:text="*{content}">댓글내용</div>
+
+        <div style="width: fit-content; display: flex; gap: 10px;">
+          <th:block th:if="${ loginInfo != null}">
+            <th:block th:if="${loginInfo.id == comment.memberId}">
+              <input type="button" class="btn custom-btn comment-edit" value="수정">
+              <input type="button" class="btn custom-btn comment-delete" value="삭제">
+            </th:block>
+          </th:block>
+        </div>
+      </div>
+
       <!--댓글 수정 버튼 눌렀을 때-->
-      <div class="edit-form" style="display: none;">
-        <textarea class="form-control" cols="10" rows="5" style="resize: none;">댓글내용원본</textarea>
-        <div style="margin-top: 10px;">
+      <div class="edit-form commentUpdateWithButton" style="display: none;">
+        <textarea class="form-control" cols="10" rows="3" style="resize: none;" th:text="*{content}">댓글내용원본</textarea>
+        <div style="margin-top: 10px; display: flex; justify-content: right; gap: 10px">
           <input type="button" class="btn custom-btn edit-apply" value="댓글수정">
           <input type="button" class="btn custom-btn edit-cancel" value="수정취소">
         </div>
       </div>
-      <div style="text-align: right">
-        <th:block th:if="${ loginInfo != null}">
-          <th:block th:if="${loginInfo.id == comment.memberId}">
-            <input type="button" class="btn custom-btn comment-edit" value="수정">
-            <input type="button" class="btn custom-btn comment-delete" value="삭제">
-          </th:block>
-        </th:block>
-      </div>
+
+
     </div>
   </section>
 </div>

@@ -35,9 +35,34 @@
     width: 83%;
 }
 
+.commentCnt{
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.commentWithButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.commentUpdateWithButton{
+    margin: 10px 0px 0px 15px;
+}
+
+.comment-content{
+    margin: 10px 15px;
+}
+
 .commentDate{
     color: #848484;
-    margin-left: 10px;
+    margin-left: 13px;
+    font-size: 14px;
+}
+
+.myComment{
+    color: #848484;
     font-size: 14px;
 }
 
