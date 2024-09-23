@@ -25,10 +25,7 @@ public class MovieServiceImple implements MovieService{
 
     public Page<Map<String, Object>> moviePaging(Pageable pageable) {
         List<MovieDto> movieList = movieMapper.selectAll();
-//        RequestList requestList = RequestList.builder()
-//                .data(movieList)
-//                .pageable(pageable)
-//                .build();
+
         int page = pageable.getPageNumber(); // 페이지 번호
         int pageSize = pageable.getPageSize(); // 페이지 크기
         int offset = page * pageSize; // 계산된 offset 값

@@ -38,14 +38,15 @@ public class MainController {
 //        List<MovieDto> movieList = movieService.selectAll();
         Page<Map<String, Object>> movieList = movieService.moviePaging(pageable);
 
-        log.info("movieList: {}", movieList);
-
         model.addAttribute("movieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
         model.addAttribute("showSearch", "yes");
 
-        // 페이지네이션에 필요한 정보
-//        return getPageInfoAndGoView(model, notepads, "admin/notepad/list");
+        /// 페이지네이션 관련 정보
+        model.addAttribute("currentPage", movieList.getNumber());
+        model.addAttribute("totalPages", movieList.getTotalPages());
+        model.addAttribute("pageSize", movieList.getSize());
+
         return "/main/main";
     }
 

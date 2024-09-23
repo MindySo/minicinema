@@ -8330,6 +8330,11 @@ textarea.form-control-lg {
   color: black;
 }
 
+.page-link.active, .active > .page-link {
+  background-color: #212529;
+  border-color: #212529;
+}
+
 @media (min-width: 576px) {
   .float-sm-start {
     float: left !important;
