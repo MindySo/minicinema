@@ -12,4 +12,5 @@ public interface AuthService {
     MemberEntity signup(MemberRequestDto memberRequestDto);
     TokenDto login(MemberRequestDto memberRequestDto);
     TokenDto reissue(TokenRequestDto tokenRequestDto);
+    void logout(String token);
 }

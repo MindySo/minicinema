@@ -87,7 +87,7 @@ public class AuthServiceImpl implements AuthService {
         Authentication authentication = tokenProvider.getAuthentication(tokenRequestDto.getAccessToken());
 
         // 3. 저장소에서 Member ID 를 기반으로 Refresh Token 값 가져옴
-        RefreshTokenEntity refreshToken = refreshTokenRepository.findByKey(authentication.getName())
+        RefreshTokenEntity refreshToken = refreshTokenRepository.findById(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("로그아웃 된 사용자입니다."));
 
         // 4. Refresh Token 일치하는지 검사
@@ -106,4 +106,10 @@ public class AuthServiceImpl implements AuthService {
         return tokenDto;
     }
 
+    @Override
+    @Transactional
+    public void logout(String token) {
+        Authentication authentication = tokenProvider.getAuthentication(token);
+        refreshTokenRepository.deleteById(authentication.getName());
+    }
 }

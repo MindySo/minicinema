@@ -109,6 +109,25 @@ public class TokenProvider {
         return false;
     }
 
+    public boolean invalidateToken(String token) {
+        try {
+
+            ZonedDateTime now = ZonedDateTime.now();
+            Jwts.parser().requireExpiration(java.sql.Date.from(now.toInstant())).build().parseSignedClaims(token);
+
+            return true;
+        } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
+            log.info("잘못된 JWT 서명입니다.");
+        } catch (ExpiredJwtException e) {
+            log.info("이미 만료된 JWT 토큰입니다.");
+        } catch (UnsupportedJwtException e) {
+            log.info("지원되지 않는 JWT 토큰입니다.");
+        } catch (IllegalArgumentException e) {
+            log.info("JWT 토큰이 잘못되었습니다.");
+        }
+        return false;
+    }
+
     private Claims parseClaims(String accessToken) {
         try {
             return Jwts.parser().verifyWith(key).build().parseSignedClaims(accessToken).getPayload();
@@ -116,8 +135,4 @@ public class TokenProvider {
             return e.getClaims();
         }
     }
-
-//    public Long getUserId(String token) {
-//        return parseClaims(token).get("memberId", Long.class);
-//    }
 }

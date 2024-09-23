@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function logout() {
     if(confirm('로그아웃 하시겠습니까?')) {
-        window.location.href = "/logout";
+        fetch('/logout', {
+            method: 'get',
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/";
+                } else {
+                    alert('잠시 후 다시 시도해주세요.');
+                }
+            })
+
     }
 }

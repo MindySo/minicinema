@@ -1,19 +1,16 @@
 package com.minicine.minicinema.control;
 
 import com.minicine.minicinema.dto.MovieDto;
+import com.minicine.minicinema.dto.auth.MemberRequestDto;
 import com.minicine.minicinema.dto.member.MemberDto;
-import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.service.MovieService;
-import com.minicine.minicinema.service.member.MemberService;
-import jakarta.servlet.http.Cookie;
+import com.minicine.minicinema.service.auth.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
+    private final AuthService authService;
     private final AttributeController attributeController;
     private final MovieService movieService;
 
@@ -54,6 +52,22 @@ public class MainController {
     public String signUpSuccess() {
         return "/main/main";
     }
+
+//    @GetMapping("/memberLogout")
+//    public String logout(@ModelAttribute("loginInfo") MemberDto loginInfo, Model model) {
+//
+//        log.info("mainController.logout");
+//
+//        MemberRequestDto memberRequestDto = new MemberRequestDto();
+//        memberRequestDto.setUsername(loginInfo.getUsername());
+//        memberRequestDto.setPassword(loginInfo.getPassword());
+//        authService.logout(memberRequestDto);
+//
+//        List<MovieDto> movieList = movieService.selectAll();
+//        model.addAttribute("MovieList", movieList);
+//        model.addAttribute("showSearch", "yes");
+//        return "/main/main";
+//    }
 
 
 

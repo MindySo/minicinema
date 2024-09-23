@@ -5,7 +5,9 @@ import com.minicine.minicinema.jwt.handler.CustomAuthenticationEntryPoint;
 import com.minicine.minicinema.jwt.JwtAuthFilter;
 import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.jwt.TokenProvider;
+import com.minicine.minicinema.service.auth.AuthService;
 import com.minicine.minicinema.service.auth.CustomUserDetailsService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,6 +18,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -24,11 +27,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @AllArgsConstructor
 public class SecurityConfig  {
-    private final CustomUserDetailsService customUserDetailsService;
-    private final JwtUtil jwtUtil;
     private final TokenProvider tokenProvider;
     private final CustomAccessDeniedHandler accessDeniedHandler;
     private final CustomAuthenticationEntryPoint authenticationEntryPoint;
+    private final AuthService authService;
 
     private static final String[] AUTH_WHITELIST = {
             "/api/v1/member/**", "/swagger-ui/**", "/api-docs", "/swagger-ui-custom.html",
@@ -67,20 +69,30 @@ public class SecurityConfig  {
 //                        .anyRequest().authenticated()
         );
 
-//        http.logout(logout -> logout
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/")
-//                // 로그아웃 핸들러 추가 (세션 무효화 처리)
-//                .addLogoutHandler((request, response, authentication) -> {
-//                    HttpSession session = request.getSession();
-//                    session.invalidate();
-//                })
-//                // 로그아웃 성공 핸들러 추가 (리다이렉션 처리)
-//                .logoutSuccessHandler((request, response, authentication) ->
-//                        response.sendRedirect("/"))
-//                .deleteCookies("JSESSIONID", "access_token"));
-
-
+        http.logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .deleteCookies("JSESSIONID", "jwt")
+                // 로그아웃 핸들러 추가 (세션 무효화 처리)
+                .addLogoutHandler((request, response, authentication) -> {
+                    HttpSession session = request.getSession();
+                    session.invalidate();
+                })
+                // 로그아웃 성공 핸들러 추가 (리다이렉션 처리)
+                .logoutSuccessHandler((request, response, authentication) -> {
+                    Cookie[] cookies = request.getCookies();
+                    if (cookies != null) {
+                        for (Cookie cookie : cookies) {
+                            if ("jwt".equals(cookie.getName())) {
+                                String token = cookie.getValue();
+                                authService.logout(token); // 토큰 무효화
+                                break;
+                            }
+                        }
+                    }
+                    response.sendRedirect("/");
+                })
+        );
         return http.build();
     }
 

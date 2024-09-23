@@ -5,16 +5,15 @@ import com.minicine.minicinema.dto.auth.TokenDto;
 import com.minicine.minicinema.dto.auth.TokenRequestDto;
 import com.minicine.minicinema.dto.member.MemberDto;
 import com.minicine.minicinema.entity.member.MemberEntity;
-import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.service.auth.AuthService;
+import com.minicine.minicinema.service.member.MemberService;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -26,6 +25,7 @@ import java.io.IOException;
 public class AuthApiController {
 
     private final AuthService authService;
+    private final MemberService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity<MemberEntity> signup(@RequestBody MemberRequestDto memberRequestDto) {
@@ -44,7 +44,7 @@ public class AuthApiController {
         cookie.setHttpOnly(true);
         cookie.setSecure(true); // HTTPS에서만 쿠키 전송
         cookie.setPath("/");
-        cookie.setMaxAge(3600); // 1시간 유효
+        cookie.setMaxAge(7200); // 2시간 유효
 
         response.addCookie(cookie);
 

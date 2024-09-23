@@ -28,7 +28,7 @@ $(document).ready(function () {
         })
             .then(response => {
                 if (response.ok) {
-                    window.location.href = "/movie/detailMovie/" + movieId;
+                    window.location.reload();
                 } else {
                     alert('잠시 후 다시 시도해주세요.');
                 }
@@ -112,7 +112,7 @@ $(document).ready(function () {
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href = "/movie/detailMovie/" + movieId;
+                        window.location.reload();
                     } else {
                         alert('잠시 후 다시 시도해주세요.');
                     }
