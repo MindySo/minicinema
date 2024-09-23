@@ -10,11 +10,15 @@ import com.minicine.minicinema.service.comment.CommentService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -67,24 +71,36 @@ public class MovieController {
 
     @GetMapping("/searchMovie")
     public String searchMovie(@ModelAttribute("loginInfo") MemberDto loginInfo, Model model,
-                              @RequestParam String category, @RequestParam String keyword) {
+                              @RequestParam String category, @RequestParam String keyword,
+                              @PageableDefault(size = 12) Pageable pageable) {
         String likeKeyword = '%' + keyword + '%';
 
-        List<MovieDto> movieList = null;
+        Page<Map<String, Object>> movieList = null;
         if(category.equals("whole")) {
-            movieList = movieService.selectByKeyword(likeKeyword);
+            movieList = movieService.selectByKeywordPaging(pageable, likeKeyword);
         }else if(category.equals("title")){
-            movieList = movieService.selectByTitle(likeKeyword);
+            movieList = movieService.selectByTitlePaging(pageable, likeKeyword);
         }else if(category.equals("director")){
-            movieList = movieService.selectByDirector(likeKeyword);
+            movieList = movieService.selectByDirectorPaging(pageable, likeKeyword);
         }else if(category.equals("actor")){
-            movieList = movieService.selectByActor(likeKeyword);
+            movieList = movieService.selectByActorPaging(pageable, likeKeyword);
         };
         model.addAttribute("category", category);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("MovieList", movieList);
+        model.addAttribute("movieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
-        model.addAttribute("showSearch", "yes");
+        model.addAttribute("showSearch", 1);
+
+        /// 페이지네이션 관련 정보
+        int totalPages = movieList.getTotalPages();
+        if (totalPages == 0) {
+            totalPages = 1;
+        }
+        log.info("Total pages: {}", totalPages);
+
+        model.addAttribute("currentPage", movieList.getNumber());
+        model.addAttribute("totalPages", movieList.getTotalPages());
+        model.addAttribute("pageSize", movieList.getSize());
 
         return "/main/main";
     }

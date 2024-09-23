@@ -16,11 +16,11 @@
         <div class="container-div px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-<!--                <th:block th:if="${movieList.size() == 0}">-->
-<!--                    <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">검색 결과가 없습니다.</h4>-->
-<!--                </th:block>-->
+                <th:block th:if="${movieList.content.size() == 0}">
+                    <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">검색 결과가 없습니다.</h4>
+                </th:block>
 
-<!--                <th:block th:if="${movieList.size() != 0}">-->
+                <th:block th:if="${movieList.content.size() != 0}">
 
                     <div class="col mb-5" th:each="movie : ${movieList}" th:object="${movie}" th:id="${movie.movieId}">
                         <div class="card h-100">
@@ -37,14 +37,17 @@
                         </div>
                     </div>
 
-<!--                </th:block>-->
+                </th:block>
 
             </div>
 
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
+                    <!-- 이전 페이지 버튼 -->
                     <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
-                        <a class="page-link" th:href="@{/?(page=${currentPage - 1})}" aria-label="Previous">
+                        <a class="page-link"
+                           th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${currentPage - 1})} : @{/?(page=${currentPage - 1})}"
+                           aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
@@ -52,11 +55,18 @@
                     <!-- 페이지 번호 반복 -->
                     <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
                         th:classappend="${i == currentPage} ? 'active'">
-                        <a class="page-link" th:href="@{/?(page=${i})}" th:text="${i + 1}">1</a>
+                        <th:block th:if="${i + 1 > 0}">
+                            <a class="page-link"
+                               th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${i})} : @{/?(page=${i})}"
+                               th:text="${i + 1}">1</a>
+                        </th:block>
                     </li>
 
+                    <!-- 다음 페이지 버튼 -->
                     <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
-                        <a class="page-link" th:href="@{/?(page=${currentPage + 1})}" aria-label="Next">
+                        <a class="page-link"
+                           th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${currentPage + 1})} : @{/?(page=${currentPage + 1})}"
+                           aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

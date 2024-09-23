@@ -2,17 +2,17 @@ function submitForm() {
         const form = document.getElementById('signupForm');
 
         var auth = "USER";
-        if(form.authority.value != null){
+        if(form.authority.value !== ''){
             auth = form.authority.value;
         }
 
-        form.authority.value
         const formData = {
         username: form.username.value,
         password: form.password.value,
-        nickname: form.password.value,
+        nickname: form.nickname.value,
         authority: auth
     };
+        console.log(formData);
 
     fetch('/api/v1/auth/signup', {
         method: 'POST',
@@ -23,9 +23,10 @@ function submitForm() {
     })
         .then(response => {
         if (response.ok) {
-        window.location.href = "/signupSuccess";  // 로그인 성공 시 리다이렉트
-    } else {
-        alert('회원가입 실패');
-    }
+            alert('회원가입되었습니다. 로그인 페이지로 이동합니다.')
+            window.location.href = "/signIn";
+        } else {
+            alert('회원가입 실패');
+        }
     });
 }

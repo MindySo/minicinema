@@ -23,7 +23,7 @@ public class MovieServiceImple implements MovieService{
         return movieMapper.selectAll();
     }
 
-    public Page<Map<String, Object>> moviePaging(Pageable pageable) {
+    public Page<Map<String, Object>> selectAllPaging(Pageable pageable) {
         List<MovieDto> movieList = movieMapper.selectAll();
 
         int page = pageable.getPageNumber(); // 페이지 번호
@@ -34,7 +34,7 @@ public class MovieServiceImple implements MovieService{
         requestMap.put("pageSize", pageSize);
         requestMap.put("offset", offset);
 
-        List<Map<String, Object>> content = movieMapper.moviePaging(requestMap);
+        List<Map<String, Object>> content = movieMapper.selectAllPaging(requestMap);
 
         return new PageImpl<>(content, pageable, movieList.size());
     }
@@ -47,16 +47,88 @@ public class MovieServiceImple implements MovieService{
         return movieMapper.selectByKeyword(keyword);
     }
 
+    @Override
+    public Page<Map<String, Object>> selectByKeywordPaging(Pageable pageable, String keyword) {
+        List<MovieDto> movieList = movieMapper.selectByKeyword(keyword);
+
+        int page = pageable.getPageNumber(); // 페이지 번호
+        int pageSize = pageable.getPageSize(); // 페이지 크기
+        int offset = page * pageSize; // 계산된 offset 값
+
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("keyword", keyword);
+        requestMap.put("pageSize", pageSize);
+        requestMap.put("offset", offset);
+
+        List<Map<String, Object>> content = movieMapper.selectByKeywordPaging(requestMap);
+
+        return new PageImpl<>(content, pageable, movieList.size());
+    }
+
     public List<MovieDto> selectByTitle(String keyword) {
         return movieMapper.selectByTitle(keyword);
+    }
+
+    @Override
+    public Page<Map<String, Object>> selectByTitlePaging(Pageable pageable, String keyword) {
+        List<MovieDto> movieList = movieMapper.selectByTitle(keyword);
+
+        int page = pageable.getPageNumber(); // 페이지 번호
+        int pageSize = pageable.getPageSize(); // 페이지 크기
+        int offset = page * pageSize; // 계산된 offset 값
+
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("keyword", keyword);
+        requestMap.put("pageSize", pageSize);
+        requestMap.put("offset", offset);
+
+        List<Map<String, Object>> content = movieMapper.selectByTitlePaging(requestMap);
+
+        return new PageImpl<>(content, pageable, movieList.size());
     }
 
     public List<MovieDto> selectByDirector(String keyword) {
         return movieMapper.selectByDirector(keyword);
     }
 
+    @Override
+    public Page<Map<String, Object>> selectByDirectorPaging(Pageable pageable, String keyword) {
+        List<MovieDto> movieList = movieMapper.selectByDirector(keyword);
+
+        int page = pageable.getPageNumber(); // 페이지 번호
+        int pageSize = pageable.getPageSize(); // 페이지 크기
+        int offset = page * pageSize; // 계산된 offset 값
+
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("keyword", keyword);
+        requestMap.put("pageSize", pageSize);
+        requestMap.put("offset", offset);
+
+        List<Map<String, Object>> content = movieMapper.selectByDirectorPaging(requestMap);
+
+        return new PageImpl<>(content, pageable, movieList.size());
+    }
+
     public List<MovieDto> selectByActor(String keyword) {
         return movieMapper.selectByActor(keyword);
+    }
+
+    @Override
+    public Page<Map<String, Object>> selectByActorPaging(Pageable pageable, String keyword) {
+        List<MovieDto> movieList = movieMapper.selectByActor(keyword);
+
+        int page = pageable.getPageNumber(); // 페이지 번호
+        int pageSize = pageable.getPageSize(); // 페이지 크기
+        int offset = page * pageSize; // 계산된 offset 값
+
+        Map<String, Object> requestMap = new HashMap<>();
+        requestMap.put("keyword", keyword);
+        requestMap.put("pageSize", pageSize);
+        requestMap.put("offset", offset);
+
+        List<Map<String, Object>> content = movieMapper.selectByActorPaging(requestMap);
+
+        return new PageImpl<>(content, pageable, movieList.size());
     }
 
     public List<MovieDto> selectById(Long id) {

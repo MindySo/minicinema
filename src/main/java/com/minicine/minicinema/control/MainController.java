@@ -35,25 +35,25 @@ public class MainController {
     @GetMapping("/")
     public String mainPage(@ModelAttribute("loginInfo") MemberDto loginInfo,
                            @PageableDefault(size = 12) Pageable pageable, Model model) {
-//        List<MovieDto> movieList = movieService.selectAll();
-        Page<Map<String, Object>> movieList = movieService.moviePaging(pageable);
+
+        Page<Map<String, Object>> movieList = movieService.selectAllPaging(pageable);
 
         model.addAttribute("movieList", movieList);
         model.addAttribute("loginInfo", loginInfo);
-        model.addAttribute("showSearch", "yes");
+        model.addAttribute("showSearch", 1);
 
         /// 페이지네이션 관련 정보
+        int totalPages = movieList.getTotalPages();
+        if (totalPages == 0) {
+            totalPages = 1;
+        }
+
         model.addAttribute("currentPage", movieList.getNumber());
         model.addAttribute("totalPages", movieList.getTotalPages());
         model.addAttribute("pageSize", movieList.getSize());
 
         return "/main/main";
     }
-
-//    @GetMapping("getPageInfoAndGoView")
-//    public ResponseEntity<?> getListBoard(List<MovieDto> movieDto, @PageableDefault(size = 10) Pageable pageable) {
-//        return ResponseEntity.ok(movieService.moviePaging(movieDto, pageable));
-//    }
 
     @GetMapping("/signIn")
     public String login() {
@@ -63,11 +63,6 @@ public class MainController {
     @GetMapping("/signupForm")
     public String signupForm() {
         return "/member/signupForm";
-    }
-
-    @GetMapping("/signupSuccess")
-    public String signUpSuccess() {
-        return "/main/main";
     }
 
 }

@@ -151,8 +151,10 @@
 <!--        <span class="myComment">&nbsp;| &nbsp;</span>-->
         <span class="commentDate" th:text="*{regDate}">(댓글단시간)</span>
 
-        <th:block th:if="${loginInfo.id == comment.memberId}">
-          <span class="myComment">&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;내 댓글</span>
+        <th:block th:if="${ loginInfo != null}">
+          <th:block th:if="${loginInfo.id == comment.memberId}">
+            <span class="myComment">&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;내 댓글</span>
+          </th:block>
         </th:block>
 
       </div>

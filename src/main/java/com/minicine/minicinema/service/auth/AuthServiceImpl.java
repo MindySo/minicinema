@@ -39,6 +39,7 @@ public class AuthServiceImpl implements AuthService {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUsername(memberRequestDto.getUsername());
         memberEntity.setPassword(passwordEncoder.encode(memberRequestDto.getPassword()));
+        memberEntity.setNickname(memberRequestDto.getNickname());
         memberEntity.setAuthority(memberRequestDto.getAuthority());
         memberRepository.save(memberEntity);
 

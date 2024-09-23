@@ -25,7 +25,6 @@ import java.io.IOException;
 public class AuthApiController {
 
     private final AuthService authService;
-    private final MemberService memberService;
 
     @PostMapping("/signup")
     public ResponseEntity<MemberEntity> signup(@RequestBody MemberRequestDto memberRequestDto) {
