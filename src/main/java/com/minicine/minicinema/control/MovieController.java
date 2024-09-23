@@ -2,14 +2,11 @@ package com.minicine.minicinema.control;
 
 import com.minicine.minicinema.dto.*;
 import com.minicine.minicinema.dto.member.MemberDto;
-import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.service.ActorService;
 import com.minicine.minicinema.service.FavoriteService;
 import com.minicine.minicinema.service.GenreService;
-import com.minicine.minicinema.service.MovieService;
+import com.minicine.minicinema.service.MovieServiceImple;
 import com.minicine.minicinema.service.comment.CommentService;
-import com.minicine.minicinema.service.member.MemberService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,8 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +23,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MovieController {
     private final AttributeController attributeController;
-    private final MovieService movieService;
+    private final MovieServiceImple movieService;
     private final ActorService actorService;
     private final GenreService genreService;
     private final FavoriteService favoriteService;

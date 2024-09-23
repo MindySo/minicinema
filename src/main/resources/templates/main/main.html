@@ -16,13 +16,13 @@
         <div class="container-div px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-                <th:block th:if="${MovieList.size() == 0}">
-                    <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">검색 결과가 없습니다.</h4>
-                </th:block>
+<!--                <th:block th:if="${movieList.size() == 0}">-->
+<!--                    <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">검색 결과가 없습니다.</h4>-->
+<!--                </th:block>-->
 
-                <th:block th:if="${MovieList.size() != 0}">
+<!--                <th:block th:if="${movieList.size() != 0}">-->
 
-                    <div class="col mb-5" th:each="movie : ${MovieList}" th:object="${movie}" th:id="${movie.movieId}">
+                    <div class="col mb-5" th:each="movie : ${movieList}" th:object="${movie}" th:id="${movie.movieId}">
                         <div class="card h-100">
                             <img class="card-img-top" th:src="*{img}" alt="..." />
                             <div class="card-body p-4">
@@ -37,9 +37,28 @@
                         </div>
                     </div>
 
-                </th:block>
+<!--                </th:block>-->
 
             </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
         </div>
     </section>
 </div>

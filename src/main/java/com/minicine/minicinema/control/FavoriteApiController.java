@@ -1,21 +1,13 @@
 package com.minicine.minicinema.control;
 
 import com.minicine.minicinema.dto.FavoriteDto;
-import com.minicine.minicinema.dto.auth.MemberRequestDto;
-import com.minicine.minicinema.dto.auth.TokenDto;
-import com.minicine.minicinema.dto.member.MemberDto;
 import com.minicine.minicinema.service.FavoriteService;
-import com.minicine.minicinema.service.MovieService;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;

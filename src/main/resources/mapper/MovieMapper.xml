@@ -9,9 +9,19 @@
         SELECT
             movie.movie_id, title, release_date, img, director.director_name
         FROM movie
+                 JOIN movie_director ON movie.movie_id = movie_director.movie_id
+                 JOIN director ON movie_director.director_id = director.director_id
+        ORDER BY movie.movie_id;
+    </select>
+
+    <select id="moviePaging" parameterType="map" resultType="com.minicine.minicinema.dto.MovieDto">
+        SELECT
+            movie.movie_id, title, release_date, img, director.director_name
+        FROM movie
         JOIN movie_director ON movie.movie_id = movie_director.movie_id
         JOIN director ON movie_director.director_id = director.director_id
-        ORDER BY movie.movie_id;
+        ORDER BY movie.movie_id
+        LIMIT #{pageSize} OFFSET #{offset}
     </select>
 
     <select id="selectOneByMovieId" parameterType="Long" resultType="com.minicine.minicinema.dto.MovieDto">
