@@ -67,5 +67,5 @@ tasks.named('test') {
 
 test {
     // 전체 테스트의 타임아웃 시간 (예: 300초로 증가)
-    timeout = 300
+    timeout = Duration.ofSeconds(120)
 }
