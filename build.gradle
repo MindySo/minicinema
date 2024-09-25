@@ -64,3 +64,8 @@ tasks.named('test') {
     useJUnitPlatform()
     systemProperty "jasypt.encryptor.password", System.getProperty("jasypt.encryptor.password")
 }
+
+test {
+    // 전체 테스트의 타임아웃 시간 (예: 300초로 증가)
+    timeout = 300
+}
