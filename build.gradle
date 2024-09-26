@@ -7,14 +7,11 @@ plugins {
 group = 'com.minicine'
 version = '0.0.1-SNAPSHOT'
 
-//java {
-//    toolchain {
-//        languageVersion = JavaLanguageVersion.of(17)
-//    }
-//}
-
-sourceCompatibility = '17'
-targetCompatibility = '17'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 configurations {
     compileOnly {
@@ -75,12 +72,4 @@ tasks.named('test') {
 test {
     // 전체 테스트의 타임아웃 시간 (예: 300초로 증가)
     timeout = Duration.ofSeconds(500)
-}
-
-tasks.register('printJavaToolchain') {
-    doLast {
-        def toolchain = java.toolchain
-        println "Configured toolchain: ${toolchain.languageVersion.get()}"
-        println "Java home: ${toolchain.installationPath.orNull}"
-    }
 }
