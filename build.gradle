@@ -73,10 +73,7 @@ test {
 tasks.register('printJavaToolchain') {
     doLast {
         def toolchain = java.toolchain
-        def javaCompiler = toolchain.compilerFor {
-            languageVersion = JavaLanguageVersion.of(17)
-        }
         println "Configured toolchain: ${toolchain.languageVersion.get()}"
-        println "Java home: ${javaCompiler.get().metadata.installationPath.asFile}"
+        println "Java home: ${toolchain.installationPath.orNull}"
     }
 }
