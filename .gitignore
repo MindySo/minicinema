@@ -41,3 +41,4 @@ EncryptionApplicationTest
 
 ### keypair ###
 .pem
+.ppk
