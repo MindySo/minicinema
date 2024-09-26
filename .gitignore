@@ -38,3 +38,6 @@ out/
 
 application-secret.properties
 EncryptionApplicationTest
+
+### keypair ###
+minicinema_keypair_pem.pem

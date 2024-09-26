@@ -69,3 +69,14 @@ test {
     // 전체 테스트의 타임아웃 시간 (예: 300초로 증가)
     timeout = Duration.ofSeconds(500)
 }
+
+tasks.register('printJavaToolchain') {
+    doLast {
+        def toolchain = java.toolchain
+        def javaCompiler = toolchain.compilerFor {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+        println "Configured toolchain: ${toolchain.languageVersion.get()}"
+        println "Java home: ${javaCompiler.get().metadata.installationPath.asFile}"
+    }
+}
