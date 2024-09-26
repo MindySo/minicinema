@@ -40,5 +40,4 @@ application-secret.properties
 EncryptionApplicationTest.java
 
 ### keypair ###
-.pem
-.ppk
+minicinema_keypair_pem.pem
