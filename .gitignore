@@ -37,7 +37,7 @@ out/
 .vscode/
 
 application-secret.properties
-EncryptionApplicationTest
+EncryptionApplicationTest.java
 
 ### keypair ###
 .pem
