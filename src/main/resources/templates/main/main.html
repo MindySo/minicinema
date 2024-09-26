@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+
+<title layout:fragment="title">main</title>
+
+<th:block layout:fragment="css">
+</th:block>
+
+<th:block layout:fragment="javascript">
+</th:block>
+
+<div class="container" layout:fragment="content">
+    <section class="py-5">
+        <div class="container-div px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                <th:block th:if="${movieList.content.size() == 0}">
+                    <h4 style="height: 200px; align-content: center; padding-bottom: 20px;">검색 결과가 없습니다.</h4>
+                </th:block>
+
+                <th:block th:if="${movieList.content.size() != 0}">
+
+                    <div class="col mb-5" th:each="movie : ${movieList}" th:object="${movie}" th:id="${movie.movieId}">
+                        <div class="card h-100">
+                            <img class="card-img-top" th:src="*{img}" alt="..." />
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder" th:text="*{title}">영화제목</h5>
+                                    <span th:text="*{directorName + ', ' + (releaseDate != null ? releaseDate.getYear() : 'Unknown')}">감독, 개봉년도</span>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" th:href="@{|/movie/detailMovie/*{movieId}|}">자세히 보기</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </th:block>
+
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <!-- 이전 페이지 버튼 -->
+                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${currentPage - 1})} : @{/?(page=${currentPage - 1})}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <!-- 페이지 번호 반복 -->
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                        th:classappend="${i == currentPage} ? 'active'">
+                        <th:block th:if="${i + 1 > 0}">
+                            <a class="page-link"
+                               th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${i})} : @{/?(page=${i})}"
+                               th:text="${i + 1}">1</a>
+                        </th:block>
+                    </li>
+
+                    <!-- 다음 페이지 버튼 -->
+                    <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="${category != null and keyword != null} ? @{/movie/searchMovie(category=${category}, keyword=${keyword}, page=${currentPage + 1})} : @{/?(page=${currentPage + 1})}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+</div>
+</html>

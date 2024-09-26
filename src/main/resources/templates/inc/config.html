@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:fragment="configFragment">
+    <head>
+        <meta charset="UTF-8">
+        <th:block layout:fragment="title"/>
+        <!-- 공용CSS -->
+        <th:block th:replace="~{common/css}"/>
+
+        <!-- 현재페이지를 위한 CSS -->
+        <th:block layout:fragment="css"/>
+
+        <!-- 공용javascript -->
+        <th:block th:replace="~{common/javascript}"/>
+        <!-- 현재페이지를 위한 javascript -->
+        <th:block layout:fragment="javascript"/>
+
+    </head>
+</th:block>
