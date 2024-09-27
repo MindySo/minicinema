@@ -1,6 +1,6 @@
 package com.minicine.minicinema.service.member;
 
-import com.minicine.minicinema.dto.member.MemberDto;
+import com.minicine.minicinema.dto.MemberDto;
 import org.springframework.stereotype.Service;
 
 @Service

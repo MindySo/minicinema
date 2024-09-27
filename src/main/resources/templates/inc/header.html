@@ -30,7 +30,7 @@
                             <input type="hidden" id="loginInfoId" th:value="${loginInfo.id}">
                             <input type="hidden" id="loginInfoNickname" th:value="${loginInfo.nickname}">
                             <li class="nav-item"><a class="nav-link active" aria-current="page" th:text="${loginInfo.nickname + '님'}" style="font-weight: 600">사용자명</a></li>
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/movie/myMovie">찜목록</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/movie/myMovie">즐겨찾기</a></li>
                             <li class="nav-item"><a class="nav-link active" aria-current="page" onclick="logout()" style="cursor: pointer">로그아웃</a></li>
                         </th:block>
                     </ul>

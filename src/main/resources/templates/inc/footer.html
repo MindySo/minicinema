@@ -14,7 +14,11 @@
 
 <footer th:fragment="footer" class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; MiniCinema</p>
+        <div style="display: flex; justify-content: center">
+            <a th:href="@{https://github.com/MindySo/minicinema}" href="https://github.com/MindySo/minicinema" class="m-0 text-center text-white" style="text-decoration: none;">Github</a>
+            <div class="m-0 text-center text-white">&nbsp;&nbsp;|&nbsp;&nbsp;</div>
+            <p class="m-0 text-center text-white">Copyright 2024. &copy; MiniCinema. All Right Reserved.</p>
+        </div>
     </div>
 </footer>
 

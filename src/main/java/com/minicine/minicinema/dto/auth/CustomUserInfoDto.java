@@ -1,7 +1,7 @@
 package com.minicine.minicinema.dto.auth;
 
 import com.minicine.minicinema.common.AuthorityEnum;
-import com.minicine.minicinema.dto.member.MemberDto;
+import com.minicine.minicinema.dto.MemberDto;
 import lombok.*;
 
 @AllArgsConstructor

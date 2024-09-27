@@ -3,7 +3,7 @@ package com.minicine.minicinema.service.auth;
 import com.minicine.minicinema.dto.auth.MemberRequestDto;
 import com.minicine.minicinema.dto.auth.TokenDto;
 import com.minicine.minicinema.dto.auth.TokenRequestDto;
-import com.minicine.minicinema.entity.member.MemberEntity;
+import com.minicine.minicinema.entity.MemberEntity;
 import org.springframework.stereotype.Service;
 
 @Service

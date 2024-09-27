@@ -1,7 +1,7 @@
-package com.minicine.minicinema.repository.comment;
+package com.minicine.minicinema.repository;
 
 import com.minicine.minicinema.dto.CommentDto;
-import com.minicine.minicinema.entity.comment.CommentEntity;
+import com.minicine.minicinema.entity.CommentEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

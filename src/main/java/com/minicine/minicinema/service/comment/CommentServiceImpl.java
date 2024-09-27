@@ -1,13 +1,12 @@
 package com.minicine.minicinema.service.comment;
 
 import com.minicine.minicinema.dto.CommentDto;
-import com.minicine.minicinema.entity.comment.CommentEntity;
-import com.minicine.minicinema.repository.comment.CommentRepository;
+import com.minicine.minicinema.entity.CommentEntity;
+import com.minicine.minicinema.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j

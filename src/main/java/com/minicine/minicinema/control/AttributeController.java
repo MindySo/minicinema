@@ -1,6 +1,6 @@
 package com.minicine.minicinema.control;
 
-import com.minicine.minicinema.dto.member.MemberDto;
+import com.minicine.minicinema.dto.MemberDto;
 import jakarta.servlet.http.Cookie;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

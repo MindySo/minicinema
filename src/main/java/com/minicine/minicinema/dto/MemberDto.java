@@ -1,6 +1,6 @@
-package com.minicine.minicinema.dto.member;
+package com.minicine.minicinema.dto;
 
-import com.minicine.minicinema.entity.member.MemberEntity;
+import com.minicine.minicinema.entity.MemberEntity;
 import lombok.*;
 
 @Setter
