@@ -1,4 +1,4 @@
-package com.minicine.minicinema.entity.member;
+package com.minicine.minicinema.entity;
 
 import com.minicine.minicinema.common.AuthorityEnum;
 import jakarta.persistence.*;

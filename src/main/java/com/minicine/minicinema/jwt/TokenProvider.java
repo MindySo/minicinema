@@ -1,7 +1,7 @@
 package com.minicine.minicinema.jwt;
 
 import com.minicine.minicinema.dto.auth.TokenDto;
-import com.minicine.minicinema.repository.member.MemberRepository;
+import com.minicine.minicinema.repository.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

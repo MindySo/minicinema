@@ -3,16 +3,13 @@ package com.minicine.minicinema.control;
 import com.minicine.minicinema.dto.auth.MemberRequestDto;
 import com.minicine.minicinema.dto.auth.TokenDto;
 import com.minicine.minicinema.dto.auth.TokenRequestDto;
-import com.minicine.minicinema.dto.member.MemberDto;
-import com.minicine.minicinema.entity.member.MemberEntity;
+import com.minicine.minicinema.entity.MemberEntity;
 import com.minicine.minicinema.service.auth.AuthService;
-import com.minicine.minicinema.service.member.MemberService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +38,7 @@ public class AuthApiController {
         // HTTP-Only 쿠키 설정
         Cookie cookie = new Cookie("jwt", tokenDto.getAccessToken());
         cookie.setHttpOnly(true);
-        cookie.setSecure(true); // HTTPS에서만 쿠키 전송
+        cookie.setSecure(false); // true 시 HTTPS에서만 쿠키 전송
         cookie.setPath("/");
         cookie.setMaxAge(7200); // 2시간 유효
 

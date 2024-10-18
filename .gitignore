@@ -37,4 +37,7 @@ out/
 .vscode/
 
 application-secret.properties
-EncryptionApplicationTest
+EncryptionApplicationTest.java
+
+### keypair ###
+minicinema_keypair_pem.pem

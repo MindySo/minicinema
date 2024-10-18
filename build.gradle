@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.3'
+    id 'org.springframework.boot' version '3.3.1'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
@@ -21,6 +21,10 @@ configurations {
 
 repositories {
     mavenCentral()
+    gradlePluginPortal()
+    maven { url 'https://repo.spring.io/release' }
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
@@ -63,4 +67,9 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
     systemProperty "jasypt.encryptor.password", System.getProperty("jasypt.encryptor.password")
+}
+
+test {
+    // 전체 테스트의 타임아웃 시간 (예: 300초로 증가)
+    timeout = Duration.ofSeconds(500)
 }

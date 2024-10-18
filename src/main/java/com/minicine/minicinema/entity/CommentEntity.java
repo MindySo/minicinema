@@ -1,4 +1,4 @@
-package com.minicine.minicinema.entity.comment;
+package com.minicine.minicinema.entity;
 
 import jakarta.persistence.Id;
 import lombok.*;

@@ -1,7 +1,7 @@
 package com.minicine.minicinema.control;
 
 import com.minicine.minicinema.dto.*;
-import com.minicine.minicinema.dto.member.MemberDto;
+import com.minicine.minicinema.dto.MemberDto;
 import com.minicine.minicinema.service.ActorService;
 import com.minicine.minicinema.service.FavoriteService;
 import com.minicine.minicinema.service.GenreService;
@@ -66,7 +66,7 @@ public class MovieController {
         model.addAttribute("recommendList", recommendList);
         model.addAttribute("loginInfo", loginInfo);
         model.addAttribute("commentList", commentList);
-        return "/detail/detailMovie";
+        return "detail/detailMovie";
     }
 
     @GetMapping("/searchMovie")
@@ -102,7 +102,7 @@ public class MovieController {
         model.addAttribute("totalPages", movieList.getTotalPages());
         model.addAttribute("pageSize", movieList.getSize());
 
-        return "/main/main";
+        return "main/main";
     }
 
     @GetMapping("/myMovie")
@@ -112,6 +112,6 @@ public class MovieController {
         model.addAttribute("loginInfo", loginInfo);
         log.info("loginInfo: {}" , loginInfo);
 
-        return "/member/myMovie";
+        return "member/myMovie";
     }
 }

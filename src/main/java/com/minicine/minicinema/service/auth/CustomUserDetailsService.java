@@ -1,7 +1,7 @@
 package com.minicine.minicinema.service.auth;
 
-import com.minicine.minicinema.entity.member.MemberEntity;
-import com.minicine.minicinema.repository.member.MemberRepository;
+import com.minicine.minicinema.entity.MemberEntity;
+import com.minicine.minicinema.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.GrantedAuthority;
