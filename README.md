@@ -109,9 +109,9 @@
     </td>
     <td width="50%"  valign="top">
       <ul>
-        <li><strong>Spring Pageable</strong>을 사용하여 페이징 처리</li>
+        <li><code>Spring Pageable</code>을 사용하여 페이징 처리</li>
   <br/>
-        <li><strong>MyBatis</strong>를 사용하여 통합검색 및 카테고리에 따른 검색어 조회 기능 구현</li>
+        <li><code>MyBatis</code>를 사용하여 통합검색 및 카테고리에 따른 검색어 조회 기능 구현</li>
       <img src="README_images/검색창.png" width="100%"><br/>
       <p><em>▲ 카테고리별 검색 기능</em></p>
   <br/>
@@ -142,7 +142,7 @@
   <br/>
         <li>해당 영화와 같은 장르의 영화를 조회하여 비슷한 영화로 추천</li>
   <br/>
-        <li><strong>MongoDB</strong>와 <strong>JPA</strong>를 활용하여 댓글 CRUD 기능 구현</li>
+        <li><code>MongoDB</code>와 <code>JPA</code>를 활용하여 댓글 CRUD 기능 구현</li>
       </ul>
     </td>
   </tr>
