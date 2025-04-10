@@ -1,81 +1,116 @@
-# 🎬 Minicinema
+<h1 align="center">🎬 Minicinema</h1>
+<p align="center"><strong>사용자 맞춤형 서비스를 제공하는 영화 커뮤니티</strong></p>
 
-> 사용자 맞춤형 서비스를 제공하는 영화 커뮤니티
+<p align="center">
+  <img src="README_images/스크린샷 2024-09-26 161902.png" width="80%">
+</p>
 
-![README_images스크린샷 2024-09-26 161902.png](README_images/스크린샷 2024-09-26 161902.png)
+<hr/>
 
-| 항목 | 내용 |
-|------|------|
-| **개요** | 영화 데이터와 관련된 다양한 정보를 관리하고, 사용자 간의 소통을 지원하는 커뮤니티입니다. 영화, 배우, 감독 등 다양한 분류와 검색어를 통해 효율적인 검색 및 상세 조회가 가능하며, 댓글 및 즐겨찾기 기능도 제공합니다. |
-| **진행 기간** | 2024.09.09 ~ 2024.09.25 |
-| **팀 구성** | 개인 프로젝트 |
-| **기술 스택** | `Java17`, `Python`, `Spring Boot 3.3.1`, `Spring Security`, `Spring Data JPA`, `Mybatis`, `MySql`, `MongoDB`, `Thymeleaf`, `Selenium`, `AWS RDS`, `AWS EC2` |
-| **GitHub** | [https://github.com/MindySo/minicinema](https://github.com/MindySo/minicinema) |
-| **URL** | [http://3.38.94.145:8080/](http://3.38.94.145:8080/) |
+<h2>📌 프로젝트 개요</h2>
 
----
+<table>
+  <tr>
+    <td><strong>개요</strong></td>
+    <td>영화 데이터와 관련된 다양한 정보를 관리하고, 사용자 간의 소통을 지원하는 커뮤니티입니다. 다양한 검색 기능과 즐겨찾기, 댓글 기능으로 사용자 맞춤형 서비스를 제공합니다.</td>
+  </tr>
+  <tr>
+    <td><strong>진행 기간</strong></td>
+    <td>2024.09.09 ~ 2024.09.25</td>
+  </tr>
+  <tr>
+    <td><strong>팀 구성</strong></td>
+    <td>개인 프로젝트</td>
+  </tr>
+  <tr>
+    <td><strong>기술 스택</strong></td>
+    <td><code>Java17</code> <code>Python</code> <code>Spring Boot 3.3.1</code> <code>Spring Security</code> <code>JPA</code> <code>MyBatis</code> <code>MySQL</code> <code>MongoDB</code> <code>Thymeleaf</code> <code>Selenium</code> <code>AWS EC2/RDS</code></td>
+  </tr>
+  <tr>
+    <td><strong>GitHub</strong></td>
+    <td><a href="https://github.com/MindySo/minicinema">https://github.com/MindySo/minicinema</a></td>
+  </tr>
+  <tr>
+    <td><strong>URL</strong></td>
+    <td><a href="http://3.38.94.145:8080/">http://3.38.94.145:8080/</a></td>
+  </tr>
+</table>
 
-## 🏗 System Architecture
+<hr/>
 
-![minicinema_systemarchitecture_notion(pdf)용.png](README_images/minicinema_systemarchitecture_notion(pdf)용.png)
+<h2>🧱 System Architecture</h2>
+<p>
+  <img src="README_images/minicinema_systemarchitecture_notion(pdf)용.png" width="80%">
+</p>
 
----
+<h2>🧩 ERD</h2>
+<p>
+  <img src="README_images/MiniCinema_ERD_white_notion(pdf)용.png" width="80%">
+</p>
 
-## 🧩 ERD
+<hr/>
 
-![MiniCinema_ERD_white_notion(pdf)용.png](README_images/MiniCinema_ERD_white_notion(pdf)용.png)
+<h2>⚙ 기술적 경험</h2>
+<ul>
+  <li><strong>JWT 기반 로그인/로그아웃 구현</strong></li>
+  <li>MyBatis + JPA 혼합 사용</li>
+  <li>jasypt로 DB정보 및 시크릿키 암호화</li>
+  <li>MongoDB로 댓글 구현</li>
+  <li>Selenium으로 KMDb 영화정보 크롤링</li>
+  <li>AWS EC2, RDS로 배포 및 DB 관리</li>
+</ul>
 
----
+<hr/>
 
-## ⚙️ 기술적 경험
+<h2>🔐 로그인 및 로그아웃</h2>
+<p>
+  <img src="README_images/minicinema_securityfilter.png" width="80%">
+</p>
+<p>
+  <img src="README_images/jwttoken.png" width="60%">
+</p>
 
-- **회원가입 및 Spring Security 기반 로그인/로그아웃**
-  - JWT 발급 및 만료 처리
-  - `Access Token` + `Refresh Token` 구조
-- **MyBatis + JPA 혼합 사용**
-  - 간단한 쿼리: `JpaRepository`
-  - 복잡한 쿼리: `MyBatis`
-- **jasypt 설정 암호화**
-  - DB 정보, secret-key 보안 처리
-- **MongoDB로 댓글 기능 구현**
-- **Selenium으로 영화 정보 크롤링**
-- **AWS EC2 + Github 연동하여 배포 자동화**
+<ul>
+  <li>Access Token + Refresh Token 구조</li>
+  <li>Access Token 만료 시 Refresh Token으로 재발급</li>
+  <li>로그아웃 시 Refresh Token 무효화</li>
+</ul>
 
----
+<hr/>
 
-## 🔐 로그인 및 로그아웃
+<h2>🎞 영화 전체 조회 및 검색</h2>
+<p>
+  <img src="README_images/메인화면.png" width="80%">
+</p>
 
-![minicinema_securityfilter.png](README_images/minicinema_securityfilter.png)
+<ul>
+  <li>Spring Pageable로 페이징 구현</li>
+  <li>MyBatis로 통합 검색 및 카테고리별 필터링 구현</li>
+</ul>
 
-![jwttoken.png](README_images/jwttoken.png)
-- JWT 방식 인증 및 재발급
-- 로그아웃 시 Refresh Token 만료 처리
+<p>
+  <img src="README_images/검색창.png" width="60%">
+</p>
+<p><em>▲ 카테고리별 검색 기능</em></p>
 
----
+<hr/>
 
-## 🔍 영화 전체 조회 및 검색 기능
+<h2>⭐ 즐겨찾기 및 댓글 기능</h2>
+<p>
+  <img src="README_images/디테일.png" width="80%">
+</p>
 
-![메인화면.png](README_images/메인화면.png)
+<ul>
+  <li>영화 즐겨찾기 추가/취소 (비동기)</li>
+  <li>즐겨찾기 목록에서 전체조회 및 상세조회</li>
+</ul>
 
-- `Spring Pageable`로 페이징 구현
-- `MyBatis`로 통합 검색 및 카테고리 필터 구현
+<p>
+  <img src="README_images/찜한영화.png" width="60%">
+</p>
+<p><em>▲ 즐겨찾기 목록 및 추천 영화</em></p>
 
-![  ▲  카테고리별 검색 기능](README_images/검색창.png)
-
-▲ 카테고리별 검색 기능
-
----
-
-## ⭐ 즐겨찾기 및 댓글 기능
-
-![디테일.png](README_images/디테일.png)
-
-- 비동기 방식 즐겨찾기 추가/삭제
-- 즐겨찾기 목록 페이지에서 전체/상세조회 가능
-
-![  ▲  즐겨찾기 목록](README_images/찜한영화.png)
-
-▲ 즐겨찾기 목록 및 추천 영화
-
-- 같은 장르의 영화 추천 기능
-- `MongoDB`, `JPA` 기반 댓글 CRUD 구현
+<ul>
+  <li>비슷한 장르의 영화 추천</li>
+  <li>MongoDB + JPA를 활용한 댓글 CRUD</li>
+</ul>
