@@ -1,6 +1,6 @@
 <aside>
 
-![README_images스크린샷 2024-09-26 161902.png]
+![README_images스크린샷 2024-09-26 161902.png](README_images/스크린샷 2024-09-26 161902.png)
 
 # Minicinema
 
@@ -18,11 +18,11 @@
 
 ## System Architecture
 
-![minicinema_systemarchitecture_notion(pdf)용.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/1dadee61-bfaa-42a2-a54e-57db758c67e0/627350fc-d428-406b-9bd1-13ef39cd4b31.png)
+![minicinema_systemarchitecture_notion(pdf)용.png](README_images/minicinema_systemarchitecture_notion(pdf)용.png)
 
 ## ERD
 
-![MiniCinema_ERD_white_notion(pdf)용.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/1cf8d2a5-0b7b-4346-9ec7-7e2eebb40ec2/3c06d6e5-5256-4a8b-a14c-230b87388216.png)
+![MiniCinema_ERD_white_notion(pdf)용.png](README_images/MiniCinema_ERD_white_notion(pdf)용.png)
 
 ## 기술적 경험
 
@@ -45,11 +45,11 @@
 
 ### 로그인 및 로그아웃 기능
 
-![minicinema_securityfilter.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/ddbebabe-fd7a-4950-8d61-9e37978a6e46/minicinema_securityfilter.png)
+![minicinema_securityfilter.png](README_images/minicinema_securityfilter.png)
 
 - 로그인 시 **`JWT`** 방식으로 유효기간이 짧은 `Access Token`과 긴 `Refresh Token`을 함께 발급
     
-    ![jwttoken.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/6e5e7733-f054-433a-8186-aa7e8c95d800/jwttoken.png)
+    ![jwttoken.png](README_images/jwttoken.png)
     
 - `Access Token`이 만료될 경우 `Refresh Token`의 유효성 검사 후 `Access Token` 재발급
 - 로그아웃 시  `Refresh Token` 만료 처리
@@ -58,12 +58,12 @@
 
 ### **영화 전체 조회 및 검색 기능**
 
-![메인화면.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/f18d137a-6493-46ef-b9b1-58d9ee191ed2/%EB%A9%94%EC%9D%B8%ED%99%94%EB%A9%B4.png)
+![메인화면.png](README_images/메인화면.png)
 
 - **`Spring Pageable`** 을 사용하여 목록 페이징
 - **`MyBatis`** 를 사용하여 통합검색 및 카테고리에 따른 검색어 조회 기능 구현
     
-    ![  ▲  카테고리별 검색 기능](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/d7d79567-ae1c-4269-b030-18a427e121e7/%EA%B2%80%EC%83%89%EC%B0%BD.png)
+    ![  ▲  카테고리별 검색 기능](README_images/검색창.png)
     
       ▲  카테고리별 검색 기능
     
@@ -73,12 +73,12 @@
 
 ### 영화 즐겨찾기 및 댓글 기능
 
-![디테일.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/53eb88d0-691a-4c07-ad99-0ac679538212/%EB%94%94%ED%85%8C%EC%9D%BC.png)
+![디테일.png](README_images/디테일.png)
 
 - 영화 상세정보 페이지에서 비동기 방식으로 영화 즐겨찾기 선택 · 취소 구현
 - 유저가 즐겨찾기한 영화는 즐겨찾기 목록에서 전체조회 및 상세조회 가능
     
-    ![  ▲  즐겨찾기 목록](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/48b2dd78-2d3b-49f5-aeac-8e6178dfa4d6/%EC%B0%9C%ED%95%9C%EC%98%81%ED%99%94.png)
+    ![  ▲  즐겨찾기 목록](README_images/찜한영화.png)
     
       ▲  즐겨찾기 목록
     
