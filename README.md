@@ -1,6 +1,6 @@
 <aside>
 
-![스크린샷 2024-09-26 161902.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c774ab31-98fd-49f8-a0f1-7d8d073c57ef/cd97a3db-5c59-41f4-9323-e72588e737cc/c6139cee-37f5-4059-b7b6-6465d6d10c11.png)
+![README_images스크린샷 2024-09-26 161902.png]
 
 # Minicinema
 
