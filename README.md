@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td><strong>기술 스택</strong></td>
-    <td><code>Java17</code> <code>Python</code> <code>Spring Boot 3.3.1</code> <code>Spring Security</code> <code>Spring Data JPA</code> <code>MyBatis</code> <code>MySQL</code> <code>MongoDB</code> <code>Thymeleaf</code> <code>Selenium</code> <code>AWS RDS</code> <code>AWS EC2</code></td>
+    <td><code>Java17</code> <code>Python</code> <code>Spring Boot 3.3.1</code> <code>Gradle</code> <code>Spring Security</code> <code>Spring Data JPA</code> <code>MyBatis</code> <code>MySQL</code> <code>MongoDB</code> <code>Thymeleaf</code> <code>Selenium</code> <code>AWS RDS</code> <code>AWS EC2</code></td>
   </tr>
   <tr>
     <td><strong>GitHub</strong></td>
