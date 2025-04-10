@@ -136,13 +136,13 @@
       <ul>
         <li>영화 상세정보 페이지에서 비동기 방식으로 영화 즐겨찾기 선택 · 취소 구현</li>
   <br/>
-        <li>유저가 즐겨찾기한 영화는 즐겨찾기 목록에서 전체조회 및 상세조회 가능 구현</li>
+        <li>유저가 즐겨찾기한 영화는 즐겨찾기 목록에서 전체조회 및 상세조회 가능</li>
         <img src="README_images/찜한영화.png" width="100%"><br/>
         <p><em>▲ 즐겨찾기 목록</em></p>
   <br/>
         <li>해당 영화와 같은 장르의 영화를 조회하여 비슷한 영화로 추천</li>
   <br/>
-        <li><strong>MongoDB</strong>와 <strong>JPA</strong>를 활용하여 댓글 CRUD 기능 구현천</li>
+        <li><strong>MongoDB</strong>와 <strong>JPA</strong>를 활용하여 댓글 CRUD 기능 구현</li>
       </ul>
     </td>
   </tr>
