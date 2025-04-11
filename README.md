@@ -86,6 +86,42 @@
 
 <hr/>
 
+<h2>⚠️ Trouble Shooting</h2>
+
+<h3>EC2 서버 배포 시 Jasypt 환경변수 오류</h3>
+
+  <ul>
+    <li><strong>문제 현상</strong></li>
+    <ul>
+      <li>EC2 서버에서 Spring Boot 애플리케이션 실행 시<code>spring.datasource.password</code> 바인딩 실패로 <code>NullPointerException</code> 발생 </li>
+      <li>로컬에서는 정상 실행되나 EC2 환경에서는 build가 중단되는 현상</li>
+	</ul><br>
+      <li><strong>원인 발견</strong></li>
+    <ul>
+      <li><code>application.properties</code>에서 <code>${JASYPT_ENCRYPTOR_PASSWORD}</code> 형태로 환경 변수를 매칭</li>
+      <li>jar 파일은 <code>nohup</code> 으로 실행하여 백그라운드에서 동작하도록 함</li>
+      <li>아래 방법들로 애플리케이션 실행 시 JVM이 Spring 시작 전에 환경 변수를 찾지 못함</li>
+    </ul><br>
+   <ol>
+      <li>
+        애플리케이션 실행 시 <code>- Djasypt.encryptor.password=설정값</code> 옵션과 함께 실행할 경우
+      <p><code>-D</code> 옵션은<strong>JVM 시스템 속성</strong>으로 접근하나, <code>${}</code>형태로 Spring의 <code>Environment</code> 객체로 조회하는 값은 <strong>운영체제의 환경변수</strong>로 접근</p>
+      </li>
+      <li>
+        <code>export JASYPT_ENCRYPTOR_PASSWORD=설정값</code> 실행 후 jar 파일 실행할 경우
+      <p><code>nohup</code> 으로 실행 시 <strong>독립된 백그라운드</strong>로 동작하므로 <code>export</code> 한 환경변수가 누락될 수 있음</p><br>
+      </li>
+    </ol>  
+   <li><strong>문제 해결</strong></li>
+    <ul>
+      <li>
+        애플리케이션 실행 명령어 앞에<br><code>JASYPT_ENCRYPTOR_PASSWORD=설정값 SPRING_PROFILES_ACTIVE=secret</code> 으로 환경변수를 선언
+      </li>
+      <li>해당 프로세스에서 환경변수가 유효하도록 실행하여 JVM과 Spring 모두 접근 가능케 함</li>
+    </ul>
+</ul>
+<hr/>
+
 <h2>🔐 로그인 및 로그아웃 기능</h2>
 
 <img src="README_images/minicinema_securityfilter.png"  width="90%"/>
