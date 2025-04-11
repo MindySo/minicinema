@@ -103,11 +103,11 @@
       <li>아래 방법들로 애플리케이션 실행 시 JVM이 Spring 시작 전에 환경 변수를 찾지 못함</li>
     </ul><br>
    <ol>
-      <li>
+      <li type="1">
         애플리케이션 실행 시 <code>- Djasypt.encryptor.password=설정값</code> 옵션과 함께 실행할 경우
       <p><code>-D</code> 옵션은<strong>JVM 시스템 속성</strong>으로 접근하나, <code>${}</code>형태로 Spring의 <code>Environment</code> 객체로 조회하는 값은 <strong>운영체제의 환경변수</strong>로 접근</p>
       </li>
-      <li>
+      <li type="1">
         <code>export JASYPT_ENCRYPTOR_PASSWORD=설정값</code> 실행 후 jar 파일 실행할 경우
       <p><code>nohup</code> 으로 실행 시 <strong>독립된 백그라운드</strong>로 동작하므로 <code>export</code> 한 환경변수가 누락될 수 있음</p><br>
       </li>
