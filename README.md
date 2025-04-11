@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td><strong>URL</strong></td>
-    <td><a href="http://3.38.94.145:8080/">http://3.38.94.145:8080/</a></td>
+    <td><a href="http://3.39.251.213:8080/">http://3.39.251.213:8080/</a></td>
   </tr>
 </table>
 
