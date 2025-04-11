@@ -112,7 +112,9 @@
       </li>
       <li type="1">
         <code>export JASYPT_ENCRYPTOR_PASSWORD=설정값</code> 실행 후 jar 파일 실행할 경우
-      <p><code>nohup</code> 으로 실행 시 <strong>독립된 백그라운드</strong>로 동작하므로 <code>export</code> 한 환경변수가 누락될 수 있음</p><br>
+      <p>
+	<code>nohup</code> 으로 실행 시 <strong>독립된 백그라운드</strong>로 동작하므로 <code>export</code> 한 환경변수가 누락될 수 있음<br>
+      </p>
       </li>
     </ol>  
    <li><strong>문제 해결</strong></li>
