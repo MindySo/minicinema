@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends MongoRepository<CommentEntity, String> {
-    List<CommentDto> findAllByMovieId(Long movieId);
+    List<CommentDto> findAllByMovieIdOrderByRegDateDesc(Long movieId);
 }
