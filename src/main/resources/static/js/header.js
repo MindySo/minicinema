@@ -16,7 +16,7 @@ function logout() {
         })
         .then(response => {
             if (response.ok) {
-                window.location.replace("/");
+                window.location.replace(window.location.origin + "/");
             } else {
                 alert('잠시 후 다시 시도해주세요.');
             }

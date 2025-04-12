@@ -80,15 +80,6 @@ public class SecurityConfig  {
                 })
                 // 로그아웃 성공 핸들러 추가 (리다이렉션 처리)
                 .logoutSuccessHandler((request, response, authentication) -> {
-                    Cookie jwtCookie = new Cookie("jwt", null);
-                    jwtCookie.setPath("/");
-                    jwtCookie.setMaxAge(0);
-                    jwtCookie.setHttpOnly(true);
-                    jwtCookie.setSecure(true);
-
-                    response.addCookie(jwtCookie);
-                    response.setHeader("Set-Cookie", "jwt=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax");
-
                     Cookie[] cookies = request.getCookies();
                     if (cookies != null) {
                         for (Cookie cookie : cookies) {
