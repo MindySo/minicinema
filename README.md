@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td><strong>URL</strong></td>
-    <td><a href="http://3.39.251.213:8080/">http://3.39.251.213:8080/</a></td>
+    <td><a href="https://minicinema.o-r.kr/">https://minicinema.o-r.kr/</a></td>
   </tr>
 </table>
 
