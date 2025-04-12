@@ -11,13 +11,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addCorsMappings(CorsRegistry corsRegistry) {
-        corsRegistry.addMapping("/**")
-                .exposedHeaders("Set-Cookie")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS" , "PATCH")
-                .allowedOrigins("http://localhost:8080");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry corsRegistry) {
+//        corsRegistry.addMapping("/**")
+//                .exposedHeaders("Set-Cookie")
+//                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS" , "PATCH")
+//                .allowedOrigins("http://localhost:8080");
+//    }
 
     @Bean
     public CorsFilter corsFilter() {
@@ -26,7 +26,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
         // Credentials: 기본 응답으로 json이 나가도록 처리
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
+        config.addAllowedOriginPattern("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
