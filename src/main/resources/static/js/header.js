@@ -16,7 +16,7 @@ function logout() {
         })
         .then(response => {
             if (response.ok) {
-                window.location.replace("https://" + window.location.host + "/");
+                window.location.replace("https://minicinema.o-r.kr/");
             } else {
                 alert('잠시 후 다시 시도해주세요.');
             }

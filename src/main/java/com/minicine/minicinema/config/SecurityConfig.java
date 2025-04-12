@@ -71,7 +71,7 @@ public class SecurityConfig  {
 
         http.logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("https://minicinema.o-r.kr/")
                 .deleteCookies("JSESSIONID", "jwt")
                 // 로그아웃 핸들러 추가 (세션 무효화 처리)
                 .addLogoutHandler((request, response, authentication) -> {
@@ -90,7 +90,7 @@ public class SecurityConfig  {
                             }
                         }
                     }
-                    response.sendRedirect("/");
+                    response.sendRedirect("https://minicinema.o-r.kr/");
                 })
         );
         return http.build();
