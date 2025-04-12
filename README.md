@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <td><strong>기술 스택</strong></td>
-    <td><code>Java17</code> <code>Python</code> <code>Spring Boot 3.3.1</code> <code>Gradle</code> <code>Spring Security</code> <code>Spring Data JPA</code> <code>MyBatis</code> <code>MySQL</code> <code>MongoDB</code> <code>Thymeleaf</code> <code>Selenium</code> <code>AWS RDS</code> <code>AWS EC2</code></td>
+    <td><code>Java17</code> <code>Python</code> <code>Spring Boot 3.3.1</code> <code>Gradle</code> <code>Spring Security</code> <code>Spring Data JPA</code> <code>MyBatis</code> <code>MySQL</code> <code>MongoDB</code> <code>Thymeleaf</code> <code>Selenium</code> <code>AWS RDS</code> <code>AWS EC2</code> <code>Nginx</code></td>
   </tr>
   <tr>
     <td><strong>GitHub</strong></td>
@@ -81,6 +81,12 @@
   <li><strong>AWS EC2를 통해 배포</strong></li>
   <ul>
       <li>EC2에 키를 가지고 통신하여 <code>Github</code> clone 및 pull하여 배포와 차후 관리</li>
+    </ul>
+</ul>
+
+  <li><strong>Nginx를 활용한 HTTPS 적용</strong></li>
+  <ul>
+      <li>EC2에 Nginx 설정, Certbot으로 SSL 인증서 발급 및 자동 갱신하여 보안 연결 구성</li>
     </ul>
 </ul>
 
