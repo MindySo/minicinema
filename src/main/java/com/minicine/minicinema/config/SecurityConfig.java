@@ -3,13 +3,12 @@ package com.minicine.minicinema.config;
 import com.minicine.minicinema.jwt.handler.CustomAccessDeniedHandler;
 import com.minicine.minicinema.jwt.handler.CustomAuthenticationEntryPoint;
 import com.minicine.minicinema.jwt.JwtAuthFilter;
-import com.minicine.minicinema.jwt.JwtUtil;
 import com.minicine.minicinema.jwt.TokenProvider;
 import com.minicine.minicinema.service.auth.AuthService;
-import com.minicine.minicinema.service.auth.CustomUserDetailsService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -18,9 +17,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -96,5 +95,12 @@ public class SecurityConfig  {
         return http.build();
     }
 
+    @Bean
+    public FilterRegistrationBean<ForwardedHeaderFilter> forwardedHeaderFilter() {
+        FilterRegistrationBean<ForwardedHeaderFilter> filterRegBean = new FilterRegistrationBean<>();
+        filterRegBean.setFilter(new ForwardedHeaderFilter());
+        filterRegBean.setOrder(0);
+        return filterRegBean;
+    }
 
 }
