@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
 function logout() {
     if(confirm('로그아웃 하시겠습니까?')) {
         fetch('/logout', {
-            method: 'GET',
+            method: 'get',
             credentials: 'include'
         })
-        .then(() => {
-            document.cookie = "jwt=; Max-Age=0; path=/;";
+        .then(response => {
+            if (response.ok) {
+                window.location.href = "/";
+            } else {
+                alert('잠시 후 다시 시도해주세요.');
+            }
+        })
 
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("refreshToken");
-
-            window.location.href = "/";
-        });
     }
 }
