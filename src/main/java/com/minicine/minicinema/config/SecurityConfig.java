@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -99,7 +100,7 @@ public class SecurityConfig  {
     public FilterRegistrationBean<ForwardedHeaderFilter> forwardedHeaderFilter() {
         FilterRegistrationBean<ForwardedHeaderFilter> filterRegBean = new FilterRegistrationBean<>();
         filterRegBean.setFilter(new ForwardedHeaderFilter());
-        filterRegBean.setOrder(0);
+        filterRegBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return filterRegBean;
     }
 
