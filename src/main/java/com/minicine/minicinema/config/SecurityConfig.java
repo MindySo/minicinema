@@ -6,6 +6,7 @@ import com.minicine.minicinema.jwt.JwtAuthFilter;
 import com.minicine.minicinema.jwt.TokenProvider;
 import com.minicine.minicinema.service.auth.AuthService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -86,6 +87,8 @@ public class SecurityConfig  {
                             if ("jwt".equals(cookie.getName())) {
                                 String token = cookie.getValue();
                                 authService.logout(token); // 토큰 무효화
+                                response.setStatus(HttpServletResponse.SC_FOUND); // 302
+                                response.setHeader("Location", "https://minicinema.o-r.kr/");
                                 break;
                             }
                         }
