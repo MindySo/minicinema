@@ -7,20 +7,11 @@ plugins {
 group = 'com.minicine'
 version = '0.0.1-SNAPSHOT'
 
-/*java {
+java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
-        vendor = JvmVendorSpec.AMAZON
     }
 }
-
-tasks.withType(JavaCompile).configureEach {
-    javaCompiler.set(
-        javaToolchains.compilerFor {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    )
-}*/
 
 configurations {
     compileOnly {
