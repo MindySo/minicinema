@@ -10,7 +10,16 @@ version = '0.0.1-SNAPSHOT'
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
+        vendor = JvmVendorSpec.AMAZON
     }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    javaCompiler.set(
+        javaToolchains.compilerFor {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    )
 }
 
 configurations {
