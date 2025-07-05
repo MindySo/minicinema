@@ -50,6 +50,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentDto> selectAllByMovieId(Long movieId) {
-        return commentRepository.findAllByMovieId(movieId);
+        return commentRepository.findAllByMovieIdOrderByRegDateDesc(movieId);
     }
 }

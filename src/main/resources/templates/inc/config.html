@@ -4,6 +4,7 @@
 <th:block th:fragment="configFragment">
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <th:block layout:fragment="title"/>
         <!-- 공용CSS -->
         <th:block th:replace="~{common/css}"/>

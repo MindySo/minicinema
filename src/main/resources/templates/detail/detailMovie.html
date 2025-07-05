@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
 
-<title layout:fragment="title">detailMovie</title>
+<title layout:fragment="title" th:text="${movie.title + ' : MiniCinema'}">detailMovie</title>
 
 <th:block layout:fragment="css">
   <link rel="stylesheet" th:href="@{/css/movie/movieDetail.css}" />
