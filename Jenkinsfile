@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            image 'gradle:8.5-jdk17'
-        }
-    }
+    agent any
+    
     stages {
         stage('Ping') {
             steps {
