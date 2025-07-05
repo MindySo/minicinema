@@ -1,6 +1,12 @@
 pipeline{
-	agent { docker { image 'gradle:8.5-jdk17' } }
+	agent any; 
 	stages {
+		stage('Test') { 
+			steps { 
+				echo 'It works!' 
+			}
+		}
+			
 		stage('build') {
 			steps {
 				sh 'gradle --version'
